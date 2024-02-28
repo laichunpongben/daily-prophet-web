@@ -68,3 +68,34 @@
   margin-bottom: 8px;
   font-size: 24px; /* Adjust the size as needed */
 }
+
+/* Media query for mobile screens */
+@media (max-width: 767px) {
+  .feed-card {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .key-bubble {
+    font-size: 0.7em;
+    margin-right: 3px;
+  }
+
+  .text-container {
+    font-size: 12px;
+  }
+
+  .error-card {
+    padding: 12px;
+    margin: 12px;
+  }
+
+  .error-header {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .weather-icon-container svg {
+    font-size: 18px;
+  }
+}
