@@ -1,7 +1,17 @@
+/* Original styles for the App */
 .App {
   text-align: center;
+  padding: 20px; /* Add some padding to the container */
 }
 
+/* Add media query for mobile view */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px; /* Adjust padding for mobile view */
+  }
+}
+
+/* Original styles for the App continued... */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +45,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Additional styles for the Feed App */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buttons-section {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+button {
+  width: 28%;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.button-space {
+  display: inline-block;
+  width: 10px;
+}
+
+select {
+  padding: 10px;
 }
