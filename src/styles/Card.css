@@ -39,6 +39,11 @@
   font-size: 14px;
 }
 
+.image-container {
+  text-align: left;
+  font-size: 14px;
+}
+
 .error-card {
   border: 2px solid #ff0000;
   border-radius: 8px;
@@ -82,6 +87,10 @@
   }
 
   .text-container {
+    font-size: 12px;
+  }
+
+  .image-container {
     font-size: 12px;
   }
 
