@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.css';
+import './styles/Card.css';
 
 const ArxivFeedCard = ({ type, category, id, title, summary, author, url }) => {
   const renderKeyBubble = (key) => (

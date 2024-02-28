@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.css';
+import './styles/Card.css';
 
 const RedditFeedCard = ({ type, community, title, author, ups, url }) => {
   const renderKeyBubble = (key) => (

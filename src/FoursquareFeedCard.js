@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.css';
+import './styles/Card.css';
 
 const FoursquareFeedCard = ({ type, name, address, category, distance, latitude, longitude, open, url }) => {
   const renderKeyBubble = (key) => (

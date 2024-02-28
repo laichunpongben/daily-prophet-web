@@ -1,7 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import { useMediaQuery } from 'react-responsive';
-import './Card.css';
+import './styles/Card.css';
 
 const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });

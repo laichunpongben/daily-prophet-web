@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
-import './Card.css';
+import './styles/SettingView.css';
 
-const PortfolioCard = ({ type, setting }) => {
-  const [portfolioSetting, setPortfolioSetting] = useState(setting);
-  const [weights, setWeights] = useState(portfolioSetting.map((s) => s[2]));
-  const [values, setValues] = useState(portfolioSetting.map((s) => s[1]));
-  const [types, setTypes] = useState(portfolioSetting.map((s) => s[0]));
-
+const SettingView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const [setting, setSetting] = useState([]);
+  const [weights, setWeights] = useState([]);
+  const [values, setValues] = useState([]);
+  const [types, setTypes] = useState([]);
 
   const typeOptions = [
     { value: 'reddit', label: 'Reddit' },
@@ -19,6 +18,24 @@ const PortfolioCard = ({ type, setting }) => {
     { value: 'openweathermap', label: 'OpenWeatherMap' },
     { value: 'foursquare', label: 'Foursquare' },
   ];
+
+  useEffect(() => {
+    const fetchSetting = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/portfolio`);
+        const data = await response.json();
+        console.log('Portfolio Data:', data);
+        setSetting(data.setting);
+        setWeights(data.setting.map((s) => Math.max(0, s[2])));
+        setValues(data.setting.map((s) => s[1]));
+        setTypes(data.setting.map((s) => s[0]));
+      } catch (error) {
+        console.error('Error fetching portfolio:', error.message);
+      }
+    };
+
+    fetchSetting();
+  }, [apiUrl]);
 
   const handleResetButtonClick = async () => {
     try {
@@ -103,7 +120,7 @@ const PortfolioCard = ({ type, setting }) => {
     setWeights(newWeights);
 
     // Update setting state
-    setPortfolioSetting(newTypes.map((type, i) => [type, newValues[i], newWeights[i]]));
+    setSetting(newTypes.map((type, i) => [type, newValues[i], newWeights[i]]));
   };
 
   const handleAddRow = () => {
@@ -113,10 +130,9 @@ const PortfolioCard = ({ type, setting }) => {
   };
 
   return (
-    <div>
-      <h3>Feed Setting</h3>
+    <div className="setting-container">
       <div className="portfolio-card">
-        {portfolioSetting ? (
+        {setting ? (
           <>
             <table>
               <thead>
@@ -170,19 +186,19 @@ const PortfolioCard = ({ type, setting }) => {
           <p>No settings available</p>
         )}
       </div>
-      {portfolioSetting && (
+      {setting && (
         <div className="portfolio-button-container">
-          <button className="add-row-button" onClick={handleAddRow}>
+          <button className="portfolio-button" onClick={handleAddRow}>
            <FontAwesomeIcon icon={faPlus} /> Add Row
           </button>
           <div className="button-space"></div>
-          <button onClick={handleSaveButtonClick}>Save</button>
+          <button className="portfolio-button" onClick={handleSaveButtonClick}>Save</button>
           <div className="button-space"></div>
-          <button onClick={handleResetButtonClick}>Reset</button>
+          <button className="portfolio-button" onClick={handleResetButtonClick}>Reset</button>
         </div>
       )}
     </div>
   );
 };
 
-export default PortfolioCard;
+export default SettingView;

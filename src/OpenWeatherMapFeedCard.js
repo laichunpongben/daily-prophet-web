@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faCloud, faCloudRain, faSnowflake, faWind } from '@fortawesome/free-solid-svg-icons';
-import './Card.css';
+import './styles/Card.css';
 
 const getWeatherIcon = (description) => {
   // Map weather descriptions to corresponding icons

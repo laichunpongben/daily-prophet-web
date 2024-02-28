@@ -1,10 +1,20 @@
 import React from 'react';
-import './Card.css';
+import PropTypes from 'prop-types';
+import './styles/Card.css';
 
-const ErrorCard = ({ type, message }) => (
-  <div>
-    <p>{message}</p>
+const ErrorCard = ({ message }) => (
+  <div className="error-card">
+    <div className="error-header">
+      <span>Error</span>
+    </div>
+    <div className="error-content">
+      <p>{message}</p>
+    </div>
   </div>
 );
+
+ErrorCard.propTypes = {
+  message: PropTypes.string.isRequired,
+};
 
 export default ErrorCard;

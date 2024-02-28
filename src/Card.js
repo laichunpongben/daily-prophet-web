@@ -1,17 +1,16 @@
 import React from 'react';
-import './Card.css';
 import RedditFeedCard from './RedditFeedCard';
 import ArxivFeedCard from './ArxivFeedCard';
 import YoutubeFeedCard from './YoutubeFeedCard';
 import OpenWeatherMapFeedCard from './OpenWeatherMapFeedCard';
 import FoursquareFeedCard from './FoursquareFeedCard';
-import PortfolioCard from './PortfolioCard';
 import ErrorCard from './ErrorCard';
+import './styles/Card.css';
 
 const Card = ({ data }) => {
   const { type, ...cardData } = data;
 
-  console.log('card data:', cardData);
+  // console.log('card data:', cardData);
 
   if (!type) {
     return null; // Do not render anything if type is not present
@@ -28,8 +27,6 @@ const Card = ({ data }) => {
       return <OpenWeatherMapFeedCard type={type} {...cardData} />;
     case "foursquare":
       return <FoursquareFeedCard type={type} {...cardData} />;
-    case "portfolio":
-      return <PortfolioCard type={type} {...cardData} />;
     case "error":
         return <ErrorCard type={type} {...cardData} />;
     default:
