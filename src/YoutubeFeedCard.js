@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+import VisibilitySensor from 'react-visibility-sensor';
 import { useMediaQuery } from 'react-responsive';
 import './styles/Card.css';
 
@@ -20,11 +21,25 @@ const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime })
     },
   };
 
+  const handleVisibilityChange = (isVisible) => {
+    if (!isVisible) {
+      // Video is not visible, pause it
+      playerRef.current.internalPlayer.pauseVideo();
+    }
+  };
+
+  const playerRef = React.createRef();
+
   return (
     <div className="feed-card">
-      <div className="youtube-container">
-        <YouTube videoId={id} opts={opts} />
-      </div>
+      <VisibilitySensor
+        onChange={handleVisibilityChange}
+        partialVisibility={true}
+      >
+        <div className="youtube-container">
+          <YouTube videoId={id} opts={opts} ref={playerRef} />
+        </div>
+      </VisibilitySensor>
       <div className="text-container">
         <h3>{title}</h3>
         <p>{renderKeyBubble('Channel')} {channel}</p>
