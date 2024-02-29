@@ -2,9 +2,10 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import VisibilitySensor from 'react-visibility-sensor';
 import { useMediaQuery } from 'react-responsive';
+import { toTitleCase } from './Util';
 import './styles/Card.css';
 
-const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime }) => {
+const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const renderKeyBubble = (key) => (
@@ -48,9 +49,8 @@ const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime })
       <div className="text-container">
         <h3>{title}</h3>
         <p>{renderKeyBubble('Channel')} {channel}</p>
-        <p>{renderKeyBubble('Description')} {description}</p>
         <p>{renderKeyBubble('Publish Time')} {publishTime}</p>
-        <p>{renderKeyBubble('Source')} {type}</p>
+        <p>{renderKeyBubble('Source')} {toTitleCase(type)}</p>
       </div>
     </div>
   );

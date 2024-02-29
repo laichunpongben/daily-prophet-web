@@ -1,4 +1,5 @@
 import React from 'react';
+import { toTitleCase } from './Util';
 import './styles/Card.css';
 
 const getWeatherIconUrl = (iconCode) => {
@@ -121,7 +122,7 @@ const OpenWeatherMapFeedCard = ({
           </div>
         </div>
 
-        <p>{renderKeyBubble('Source')} {type}</p>
+        <p>{renderKeyBubble('Source')} {toTitleCase(type)}</p>
       </div>
     </div>
   );

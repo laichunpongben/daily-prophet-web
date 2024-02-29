@@ -1,7 +1,8 @@
 import React from 'react';
+import { toTitleCase } from './Util';
 import './styles/Card.css';
 
-const ArxivFeedCard = ({ type, category, id, title, summary, author, url }) => {
+const ArxivFeedCard = ({ type, category, id, title, summary, author, updated, url }) => {
   const renderKeyBubble = (key) => (
     <div className="key-bubble">
       {key}
@@ -16,9 +17,10 @@ const ArxivFeedCard = ({ type, category, id, title, summary, author, url }) => {
         <p>{renderKeyBubble('ID')} {id}</p>
         <p>{renderKeyBubble('Summary')} {summary}</p>
         <p>{renderKeyBubble('Author')} {author}</p>
-        <p>{renderKeyBubble('Source')} {type}</p>
+        <p>{renderKeyBubble('Updated Time')} {updated}</p>
+        <p>{renderKeyBubble('Source')} {toTitleCase(type)}</p>
         <a href={url} target="_blank" rel="noopener noreferrer">
-          Read More
+          Read More...
         </a>
       </div>
     </div>
