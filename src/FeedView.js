@@ -7,43 +7,60 @@ const FeedView = () => {
 
   const [responseData, setResponseData] = useState([]);
   const [fetching, setFetching] = useState(false);
-
+  
   const fetchAndLoadFeeds = useCallback(async () => {
-    const outerContainer = document.querySelector('.card-container');
-    const innerContainer = document.querySelector('.inner-container');
-    const outerContainerHeight = outerContainer?.offsetHeight || 0;
-
-    try {
-      let response = await fetch(`${apiUrl}/pop`);
-      let data = await response.json();
-
-      // If /pop didn't return any data or returned an error, switch to /new/20
-      if (!data || !data.type || data.type === "error") {
-        response = await fetch(`${apiUrl}/new/50`);
-        data = await response.json();
+    const fetchPop = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/pop`);
+        if (response.ok) {
+          const data = await response.json();
+          return data;
+        } else {
+          return null;
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        return null;
       }
-
+    };
+    
+    try {
+      const outerContainer = document.querySelector('.card-container');
+      const innerContainer = document.querySelector('.inner-container');
+      const outerContainerHeight = outerContainer?.offsetHeight || 0;
+  
+      let data = await fetchPop();
+  
+      // If /pop didn't return any data or returned an error, try /new/50
+      if (!data || !data.type || data.type === "error") {
+        const newResponse = await fetch(`${apiUrl}/new/50`);
+        if (newResponse.ok) {
+          data = await newResponse.json();
+          data = await fetchPop();
+        }
+      }
+  
       if (data && data.type) {
         setResponseData((prevData) => (prevData ? [...prevData, data] : [data]));
       }
-
+  
       const newInnerContainerHeight = innerContainer?.scrollHeight || 0;
-
+  
       // console.log('Outer Container Height:', outerContainerHeight, '; Inner Container Height:', newInnerContainerHeight);
-
+  
       // Stop popping if inner container height exceeds outer container height
       if (newInnerContainerHeight > outerContainerHeight) {
         // console.log('Inner container height exceeds outer container height. Stopping.');
         setFetching(false); // Stop fetching more cards
         return;
       }
-
+  
       // Continue fetching recursively
       fetchAndLoadFeeds();
     } catch (error) {
       console.error('Error fetching feeds:', error.message);
     }
-  }, [apiUrl, setFetching]);
+  }, [apiUrl, setFetching]);  
 
   useEffect(() => {
     fetchAndLoadFeeds();
