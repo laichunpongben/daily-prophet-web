@@ -23,7 +23,7 @@ const FeedView = () => {
         return null;
       }
     };
-    
+
     try {
       const outerContainer = document.querySelector('.card-container');
       const innerContainer = document.querySelector('.inner-container');
@@ -73,11 +73,11 @@ const FeedView = () => {
       const scrollPosition = container.scrollTop;
       const totalHeight = container.scrollHeight;
       const containerHeight = container.offsetHeight;
-      const bufferHeight = 300;
+      const bufferHeightFactor = 0.5;
   
       // console.log('Scroll Position:', scrollPosition, '; Total Height:', totalHeight, '; Container Height:', containerHeight);
   
-      if (scrollPosition + containerHeight + bufferHeight >= totalHeight && !fetching) {
+      if (scrollPosition + containerHeight * (1 + bufferHeightFactor) >= totalHeight && !fetching) {
         // Reached the bottom, trigger fetching more cards
         setFetching(true);
         fetchAndLoadFeeds();
