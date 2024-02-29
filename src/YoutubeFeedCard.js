@@ -14,7 +14,6 @@ const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime })
   );
 
   const opts = {
-    height: isMobile ? '200' : '315',
     width: isMobile ? '100%' : '560',
     playerVars: {
       autoplay: 0,
@@ -45,7 +44,7 @@ const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime })
         <p>{renderKeyBubble('Channel')} {channel}</p>
         <p>{renderKeyBubble('Description')} {description}</p>
         <p>{renderKeyBubble('Publish Time')} {publishTime}</p>
-        <p>{renderKeyBubble('Type')} {type}</p>
+        <p>{renderKeyBubble('Source')} {type}</p>
       </div>
     </div>
   );

@@ -63,15 +63,49 @@
   color: #ff0000;
 }
 
-.weather-icon-container {
-  display: flex;
-  justify-content: left;
-  align-items: center;
+.weather-icon {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 0 auto; /* Align center */
 }
 
-.weather-icon-container svg {
-  margin-bottom: 8px;
-  font-size: 24px; /* Adjust the size as needed */
+/* Apply warm yellow color only to faSun icon */
+.weather-icon-container svg.fa-sun {
+  color: #f7941d;
+}
+
+.day-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.day {
+  padding: 5px;
+  text-align: center;
+  justify-content: center;
+  flex: 1; /* Equal width for each day box */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.day-date {
+  text-align: center;
+  font-size: 12px;
+}
+
+.day-temperature {
+  text-align: center;
+  font-size: 14px;
+}
+
+.day-description {
+  text-align: center;
+  font-size: 10px; 
+  white-space: normal;
 }
 
 /* Media query for mobile screens */
@@ -104,7 +138,20 @@
     margin-bottom: 6px;
   }
 
-  .weather-icon-container svg {
-    font-size: 18px;
+  .weather-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .day-date {
+    font-size: 10px;
+  }
+  
+  .day-temperature {
+    font-size: 12px;
+  }
+  
+  .day-description {
+    font-size: 8px; 
   }
 }

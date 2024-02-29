@@ -15,7 +15,7 @@ const RedditFeedCard = ({ type, community, title, author, ups, url }) => {
         <p>{renderKeyBubble('Community')} {community}</p>
         <p>{renderKeyBubble('Author')} {author}</p>
         <p>{renderKeyBubble('Ups')} {ups}</p>
-        <p>{renderKeyBubble('Type')} {type}</p>
+        <p>{renderKeyBubble('Source')} {type}</p>
       </div>
       <div className="image-container">
         <img src={url} alt={title} style={{ maxWidth: '100%' }} />

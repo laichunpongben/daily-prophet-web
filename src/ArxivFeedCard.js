@@ -16,7 +16,7 @@ const ArxivFeedCard = ({ type, category, id, title, summary, author, url }) => {
         <p>{renderKeyBubble('ID')} {id}</p>
         <p>{renderKeyBubble('Summary')} {summary}</p>
         <p>{renderKeyBubble('Author')} {author}</p>
-        <p>{renderKeyBubble('Type')} {type}</p>
+        <p>{renderKeyBubble('Source')} {type}</p>
         <a href={url} target="_blank" rel="noopener noreferrer">
           Read More
         </a>
