@@ -13,8 +13,14 @@ const YoutubeFeedCard = ({ type, id, title, channel, description, publishTime })
     </div>
   );
 
+  const calculateHeight = (width) => {
+    // Calculate height maintaining a 16:9 aspect ratio and rounding to the nearest integer
+    return isMobile ? '100%' : `${Math.round((9 / 16) * width)}px`;
+  };
+
   const opts = {
     width: isMobile ? '100%' : '560',
+    height: calculateHeight(isMobile ? (window.innerWidth - 20) : 560), 
     playerVars: {
       autoplay: 0,
     },
