@@ -1,7 +1,7 @@
 // src/store/index.js
-import { createStore } from 'redux';
-import rootReducer from './reducer';
+// import { createStore } from 'redux';
+// import rootReducer from './reducer';
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer);
 
-export default store;
+// export default store;

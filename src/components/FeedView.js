@@ -1,9 +1,6 @@
-// src/components/FeedView.js
-import React, { useEffect, useCallback, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import { throttle } from 'lodash';
 import Card from './Card';
-import { startFetching, stopFetching, appendCard, removeCard } from '../store/actions';
 import './styles/FeedView.css';
 
 const FeedView = () => {
@@ -12,11 +9,9 @@ const FeedView = () => {
   const MAX_CARDS_ON_PAGE = 1000;
   const EXPECTED_CARDS_ON_PAGE = 5;
 
+  const [fetching, setFetching] = useState(true);
+  const [cards, setCards] = useState([]);
   const topCardRef = useRef(null);
-  
-  const dispatch = useDispatch();
-  const fetching = useSelector((state) => state.fetching);
-  const cards = useSelector((state) => state.cards);
 
   const fetchPop = useCallback(async () => {
     try {
@@ -42,13 +37,13 @@ const FeedView = () => {
       const data = await fetchPop();
 
       if (data && data.type) {
-        dispatch(appendCard(data));
-        dispatch(stopFetching());
+        setCards((prevCards) => [...prevCards, data]);
+        setFetching(false);
       }
     } catch (error) {
       console.error('Error fetching feeds:', error.message);
     }
-  }, [dispatch, fetchPop, fetching]);
+  }, [fetching, fetchPop]);
 
   // append cards when reaching bottom
   const throttledHandleScroll = useCallback(
@@ -62,51 +57,48 @@ const FeedView = () => {
 
         const isReachBottom = scrollPosition + containerHeight * (1 + bufferHeightFactor) >= totalHeight;
 
-        console.log("Reach bottom: ", isReachBottom, " Fetching: ", fetching);
-
         if (isReachBottom) {
           if (!fetching) {
-            dispatch(startFetching());
+            setFetching(true);
           }
           fetchAndLoadFeeds();
         }
       }
     }, 100),
-    [cards, dispatch, fetchAndLoadFeeds]
+    [cards, fetchAndLoadFeeds]
   );
 
   // remove cards when too many cards
   useEffect(() => {
     if (cards.length > MAX_CARDS_ON_PAGE) {
-      console.log("Length of cards >>> ", MAX_CARDS_ON_PAGE, ": ", cards.length);
+      console.log('Length of cards >>> ', MAX_CARDS_ON_PAGE, ': ', cards.length);
 
       const topCardHeight = topCardRef.current ? topCardRef.current.offsetHeight : 0;
       console.log('Top card height:', topCardHeight);
 
-      dispatch(stopFetching());
-      dispatch(removeCard(0));
+      setFetching(false);
+      setCards((prevCards) => prevCards.slice(1));
 
       const container = document.querySelector('.card-container');
       container.scrollTop -= topCardHeight;
     }
-  }, [cards, dispatch]);
+  }, [cards]);
 
   // init page with cards
   useEffect(() => {
     if (cards.length < EXPECTED_CARDS_ON_PAGE) {
-      console.log("Length of cards <<< ", EXPECTED_CARDS_ON_PAGE, ": ", cards.length);
-      dispatch(startFetching());
-    }
-  }, [cards, dispatch]);
-
-  useEffect(() => {
-    if (cards.length === MAX_CARDS_ON_PAGE) {
-      console.log("Length of cards === ", cards.length);
+      console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
+      setFetching(true);
     }
   }, [cards]);
 
   useEffect(() => {
-    console.log("Fetching: ", fetching);
+    if (cards.length === MAX_CARDS_ON_PAGE) {
+      console.log('Length of cards === ', cards.length);
+    }
+  }, [cards]);
+
+  useEffect(() => {
     if (fetching) {
       fetchAndLoadFeeds();
     }
