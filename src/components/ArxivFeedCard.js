@@ -1,5 +1,5 @@
 import React from 'react';
-import { toTitleCase } from './Util';
+import { toTitleCase } from '../Util';
 import './styles/Card.css';
 
 const ArxivFeedCard = ({ type, category, id, title, summary, author, updated, url }) => {

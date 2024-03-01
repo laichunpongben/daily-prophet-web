@@ -1,5 +1,5 @@
 import React from 'react';
-import { toTitleCase } from './Util';
+import { toTitleCase } from '../Util';
 import './styles/Card.css';
 
 const getWeatherIconUrl = (iconCode) => {

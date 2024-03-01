@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FeedView from './FeedView';
-import SettingView from './SettingView';
+import FeedView from './components/FeedView';
+import SettingView from './components/SettingView';
 import './styles/App.css';
 
 function App() {
