@@ -1,18 +1,11 @@
 // src/store/reducer.js
-import { START_FETCHING, STOP_FETCHING, APPEND_CARD, REMOVE_CARD, SAVE_SCROLL_POSITION } from './actions';
+import { START_FETCHING, STOP_FETCHING, APPEND_CARD, REMOVE_CARD } from './actions';
 
 const initialState = {
   fetching: true,
   cards: [],
   scrollPosition: 0,
 };
-
-// immutability helpers
-// function insertItemImHelper(array, action) {
-//   let newArray = array.slice()
-//   newArray.splice(action.index, 0, action.item)
-//   return newArray
-// }
 
 function removeItemSplice(array, action) {
   let newArray = array.slice()
@@ -43,9 +36,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cards: removeItemSplice(state.cards, action.payload)
       };
-    case SAVE_SCROLL_POSITION:
-      console.log('Reducer: SAVE_SCROLL_POSITION');
-      return { ...state, scrollPosition: action.payload };
     default:
       return state;
   }

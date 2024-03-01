@@ -1,9 +1,9 @@
 // src/components/FeedView.js
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { throttle } from 'lodash';
 import Card from './Card';
-import { startFetching, stopFetching, appendCard } from '../store/actions';
+import { startFetching, stopFetching, appendCard, removeCard } from '../store/actions';
 import './styles/FeedView.css';
 
 const FeedView = () => {
@@ -11,6 +11,8 @@ const FeedView = () => {
 
   const MAX_CARDS_ON_PAGE = 1000;
   const EXPECTED_CARDS_ON_PAGE = 5;
+
+  const topCardRef = useRef(null);
   
   const dispatch = useDispatch();
   const fetching = useSelector((state) => state.fetching);
@@ -56,9 +58,7 @@ const FeedView = () => {
         const scrollPosition = container.scrollTop;
         const totalHeight = container.scrollHeight;
         const containerHeight = container.offsetHeight;
-        const bufferHeightFactor = 0.5;
-
-        // console.log('Scroll Position:', scrollPosition, '; Total Height:', totalHeight, '; Container Height:', containerHeight);
+        const bufferHeightFactor = 0.2;
 
         const isReachBottom = scrollPosition + containerHeight * (1 + bufferHeightFactor) >= totalHeight;
 
@@ -71,8 +71,8 @@ const FeedView = () => {
           fetchAndLoadFeeds();
         }
       }
-    }, 200),
-    [cards, dispatch, startFetching, fetchAndLoadFeeds]
+    }, 100),
+    [cards, dispatch, fetchAndLoadFeeds]
   );
 
   // remove cards when too many cards
@@ -80,22 +80,14 @@ const FeedView = () => {
     if (cards.length > MAX_CARDS_ON_PAGE) {
       console.log("Length of cards >>> ", MAX_CARDS_ON_PAGE, ": ", cards.length);
 
-      // const topCard = document.querySelector('.feed-card');
-      // console.log("Top card height: ", topCard.offsetHeight);
+      const topCardHeight = topCardRef.current ? topCardRef.current.offsetHeight : 0;
+      console.log('Top card height:', topCardHeight);
 
-      // const container = document.querySelector('.card-container');
-      // dispatch(saveScrollPosition(container.scrollTop));
-      // console.log("BEFORE Removal Scroll Position: ", container.scrollTop, "; Scroll Height: ", container.scrollHeight);
+      dispatch(stopFetching());
+      dispatch(removeCard(0));
 
-      // dispatch(stopFetching());
-      // dispatch(removeCard(0));
-
-      // dispatch(saveScrollPosition(container.scrollTop));
-      // console.log("AFTER Removal Scroll Position: ", container.scrollTop, "; Scroll Height: ", container.scrollHeight);
-
-      // container.scrollTop -= 350;
-      // dispatch(saveScrollPosition(container.scrollTop));
-      // console.log("AFTER ADJ Scroll Position: ", container.scrollTop, "; Scroll Height: ", container.scrollHeight);
+      const container = document.querySelector('.card-container');
+      container.scrollTop -= topCardHeight;
     }
   }, [cards, dispatch]);
 
@@ -136,7 +128,7 @@ const FeedView = () => {
     <div className="card-container">
       <div className="inner-container">
         {cards.map((feedData, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card" ref={index === 0 ? topCardRef : null}>
             <Card data={feedData} />
           </div>
         ))}

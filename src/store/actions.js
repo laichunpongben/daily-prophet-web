@@ -18,11 +18,3 @@ export const removeCard = (index) => ({
   type: REMOVE_CARD,
   payload: index,
 });
-
-
-export const SAVE_SCROLL_POSITION = 'SAVE_SCROLL_POSITION';
-
-export const saveScrollPosition = (scrollPosition) => ({ 
-  type: SAVE_SCROLL_POSITION, 
-  payload: scrollPosition,
-});
