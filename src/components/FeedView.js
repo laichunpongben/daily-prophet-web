@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef, useState } from 'react';
+import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
 import { throttle } from 'lodash';
 import Card from './Card';
 import './styles/FeedView.css';
@@ -46,8 +46,8 @@ const FeedView = () => {
   }, [fetching, fetchPop]);
 
   // append cards when reaching bottom
-  const throttledHandleScroll = useCallback(
-    throttle(() => {
+  const throttledHandleScroll = useMemo(() => {
+    return throttle(() => {
       const container = document.querySelector('.card-container');
       if (container) {
         const scrollPosition = container.scrollTop;
@@ -64,17 +64,16 @@ const FeedView = () => {
           fetchAndLoadFeeds();
         }
       }
-    }, 100),
-    [cards, fetchAndLoadFeeds]
-  );
+    }, 100);
+  }, [fetching, fetchAndLoadFeeds]);
 
   // remove cards when too many cards
   useEffect(() => {
     if (cards.length > MAX_CARDS_ON_PAGE) {
-      console.log('Length of cards >>> ', MAX_CARDS_ON_PAGE, ': ', cards.length);
+      // console.log('Length of cards >>> ', MAX_CARDS_ON_PAGE, ': ', cards.length);
 
       const topCardHeight = topCardRef.current ? topCardRef.current.offsetHeight : 0;
-      console.log('Top card height:', topCardHeight);
+      // console.log('Top card height:', topCardHeight);
 
       setFetching(false);
       setCards((prevCards) => prevCards.slice(1));
@@ -87,14 +86,14 @@ const FeedView = () => {
   // init page with cards
   useEffect(() => {
     if (cards.length < EXPECTED_CARDS_ON_PAGE) {
-      console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
+      // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
       setFetching(true);
     }
   }, [cards]);
 
   useEffect(() => {
     if (cards.length === MAX_CARDS_ON_PAGE) {
-      console.log('Length of cards === ', cards.length);
+      // console.log('Length of cards === ', cards.length);
     }
   }, [cards]);
 

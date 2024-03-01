@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
-import VisibilitySensor from 'react-visibility-sensor';
 import { useMediaQuery } from 'react-responsive';
 import { toTitleCase } from '../Util';
+import { Waypoint } from 'react-waypoint';
 import './styles/Card.css';
 
 const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [isPlaying, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   const renderKeyBubble = (key) => (
     <div className="key-bubble">
@@ -16,26 +16,33 @@ const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
   );
 
   const calculateHeight = (width) => {
-    // Calculate height maintaining a 16:9 aspect ratio and rounding to the nearest integer
     return Math.round((9 / 16) * width);
   };
 
-  const handleVisibilityChange = (isVisible) => {
-    // Video is not visible, set playing to false to pause
+  const handleVisible = (isVisible) => {
     if (!isVisible) {
       setPlaying(false);
     }
   };
 
+  const handlePlay = () => {
+    setPlaying(true);
+  };
+
+  const handlePause = () => {
+    setPlaying(false);
+  };
+
   return (
     <div className="feed-card">
-      <VisibilitySensor onChange={handleVisibilityChange} partialVisibility={true}>
+      <Waypoint onEnter={() => handleVisible(true)} onLeave={() => handleVisible(false)}>
         <div className="youtube-container">
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${id}`}
-            playing={isPlaying}
+            playing={playing}
             width={isMobile ? '100%' : '560'}
             height={calculateHeight(isMobile ? (window.innerWidth - 20) : 560)}
+            controls
             config={{
               youtube: {
                 playerVars: {
@@ -43,9 +50,11 @@ const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
                 },
               },
             }}
+            onPlay={handlePlay}
+            onPause={handlePause}
           />
         </div>
-      </VisibilitySensor>
+      </Waypoint>
       <div className="text-container">
         <h3>{title}</h3>
         <p>{renderKeyBubble('Channel')} {channel}</p>
