@@ -67,16 +67,28 @@ td.remove-button-column {
   width: 50px;
 }
 
+.portfolio-button-container {
+  width: 100%;
+  max-width: 300px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .portfolio-button {
-  padding: 8px 12px;
+  padding: 8px 15px;
   margin-bottom: 15px;
   margin-left: 10px;
   margin-right: 10px;
+  border-radius: 5px;
   background-color: #4285F4;
   color: #fff;
   border: none;
   cursor: pointer;
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .button-space {

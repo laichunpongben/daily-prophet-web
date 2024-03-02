@@ -132,7 +132,7 @@ const SettingView = () => {
   const handleAddRow = () => {
     setTypes([...types, typeOptions[0].value]); // Add a new row with the default type
     setValues([...values, '']); // Add a new row with an empty value
-    setWeights([...weights, 0]); // Add a new row with weight 0
+    setWeights([...weights, 0.01]); // Add a new row with weight 0.01
   };
 
   return (
