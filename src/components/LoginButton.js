@@ -7,7 +7,7 @@ import { useView } from './ViewContext';
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-const Login = () => {
+const LoginButton = () => {
   const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
   const { handleViewChange } = useView(); 
 
@@ -73,6 +73,12 @@ const Login = () => {
       setUserEmail(userEmail);
       setUserName(userName);
 
+      // Save the token and user info to local storage
+      localStorage.setItem('authToken', idToken);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('userEmail', userEmail);
+      localStorage.setItem('userName', userName);
+
       setTimeout(() => {
         handleViewChange('feed'); // return to feed after login successfully
       }, 1500);
@@ -98,4 +104,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginButton;

@@ -1,7 +1,7 @@
 // LoginView.js
 import React, { useContext } from 'react';
-import Login from './Login';
-import Logout from './Logout';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 import { AuthContext } from './AuthContext'; 
 import './styles/LoginView.css';
 
@@ -17,8 +17,8 @@ const LoginView = () => {
           <p>You are logged out. Please login!</p>
         )}
       </div>
-      <Login />
-      <Logout />
+      <LoginButton />
+      <LogoutButton />
     </div>
   );
 };

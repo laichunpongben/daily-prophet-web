@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { useView } from './ViewContext';
 
-const Logout = () => {
+const LogoutButton = () => {
   const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
   const { handleViewChange } = useView();
 
@@ -13,6 +13,12 @@ const Logout = () => {
     setUserId(null);
     setUserEmail(null);
     setUserName(null);
+
+    // Remove user data from local storage
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userName');
 
     handleViewChange('login'); // Redirect to login view after logout
   };
@@ -24,4 +30,4 @@ const Logout = () => {
   );
 };
 
-export default Logout;
+export default LogoutButton;

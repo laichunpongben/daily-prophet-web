@@ -1,0 +1,108 @@
+/* PortfolioSetting.css */
+
+.portfolio-button-container {
+  width: 100%;
+  max-width: 300px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  background-color: #e6e6e6;
+  font-size: 12px;
+}
+  
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  background-color: #f2f2f2;
+  font-size: 12px;
+}
+
+.type-select {
+  font-size: 12px;
+  color: #333333;
+}
+
+.value-input {
+  width: 250px;
+  font-size: 12px;
+  color: #333333;
+}
+
+.weight-input {
+  width: 60px;
+  font-size: 12px;
+  color: #333333;
+}
+
+td.remove-button-column {
+  width: 20px;
+}
+
+.portfolio-button {
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #4285F4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.button-space {
+  display: inline-block;
+  width: 100px;
+}
+
+.remove-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; 
+  border: none;
+  cursor: pointer;
+  color: #4285F4;
+  background-color: #f2f2f2;
+}
+
+.remove-button svg {
+  font-size: 1.2em;
+}
+
+
+@media (max-width: 768px) {
+  .portfolio-card,
+  table,
+  th,
+  td,
+  .remove-button {
+    font-size: 10px;
+  }
+
+  .type-select,
+  .value-input,
+  .weight-input,
+  .remove-button-column {
+    width: 100%;
+    font-size: 10px;
+  }
+}

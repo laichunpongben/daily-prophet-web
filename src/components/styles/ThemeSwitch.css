@@ -1,0 +1,26 @@
+/* ThemeSwitch.css */
+.theme-switch-container {
+  display: flex;
+  align-items: center;
+}
+  
+.theme-label {
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.theme-text {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.theme-switch {
+  transform: scaleX(0.666) scaleY(0.666);
+}
+
+@media (max-width: 768px) {
+  .theme-label,
+  .theme-text {
+    font-size: 10px;
+  }
+}

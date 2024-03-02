@@ -22,7 +22,7 @@ function Header() {
   };
 
   return (
-    <section className="buttons-section">
+    <div className="header-container">
       <button className="header-button" onClick={handleFeedButtonClick}>
         Feed
       </button>
@@ -34,7 +34,7 @@ function Header() {
       <button className="header-button" onClick={handleLoginButtonClick}>
         Login
       </button>
-    </section>
+    </div>
   );
 }
 

@@ -16,10 +16,10 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useToken = () => {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useToken must be used within a AuthProvider');
+    throw new Error('useAuth must be used within a AuthProvider');
   }
   return context;
 };
