@@ -45,22 +45,22 @@
 }
 
 .error-card {
-  border: 2px solid #d2d2d2;
+  border: 2px solid #2d2d2d;
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
-  background-color: #ffebeb;
+  background-color: #d2d2d2;
 }
 
 .error-header {
   font-size: 18px;
   font-weight: bold;
-  color:  #d2d2d2;
+  color:  #2d2d2d;
   margin-bottom: 8px;
 }
 
 .error-content {
-  color:  #d2d2d2;
+  color:  #2d2d2d;
 }
 
 .weather-icon {
