@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { TokenContext } from '../TokenContext';
 import './styles/SettingView.css';
 
 const SettingView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const { token, userName } = useContext(TokenContext);
+
   const [setting, setSetting] = useState([]);
   const [weights, setWeights] = useState([]);
   const [values, setValues] = useState([]);
@@ -22,7 +25,11 @@ const SettingView = () => {
   useEffect(() => {
     const fetchSetting = async () => {
       try {
-        const response = await fetch(`${apiUrl}/portfolio`);
+        const response = await fetch(`${apiUrl}/portfolio`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await response.json();
         console.log('Portfolio Data:', data);
         setSetting(data.setting);
@@ -35,14 +42,13 @@ const SettingView = () => {
     };
 
     fetchSetting();
-  }, [apiUrl]);
+  }, [apiUrl, token]);
 
   const handleResetButtonClick = async () => {
     try {
       const response = await fetch(`${apiUrl}/portfolio/reset`, {
-        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
       const data = await response.json();
@@ -65,6 +71,7 @@ const SettingView = () => {
       const response = await fetch(`${apiUrl}/portfolio`, {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
@@ -131,6 +138,10 @@ const SettingView = () => {
 
   return (
     <div className="setting-container">
+      <div className="welcome-message">
+        {userName && <p>Welcome back, {userName}!</p>}
+        <p>Daily Prophet - You are what you read. You control your daily feed.</p>
+      </div>
       <div className="portfolio-card">
         {setting ? (
           <>

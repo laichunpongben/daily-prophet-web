@@ -4,13 +4,6 @@
   padding: 20px; /* Add some padding to the container */
 }
 
-/* Add media query for mobile view */
-@media (max-width: 768px) {
-  .App {
-    padding: 10px; /* Adjust padding for mobile view */
-  }
-}
-
 /* Original styles for the App continued... */
 .App-logo {
   height: 40vmin;
@@ -77,7 +70,7 @@ header {
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-52%);
   width: 100%;
   max-width: 560px;
   z-index: 1;
@@ -91,11 +84,13 @@ header {
   flex: 1;
   padding: 8px 12px;
   margin: 15px 10px;
-  background-color: #3498db;
+  background-color: #4285F4;
   color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .button-space {
@@ -107,3 +102,13 @@ select {
   padding: 10px;
 }
 
+/* Add media query for mobile view */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px; /* Adjust padding for mobile view */
+  }
+
+  .header-button {
+    font-size: 12px;
+  }
+}

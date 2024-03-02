@@ -1,10 +1,12 @@
-import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useCallback, useRef, useState, useMemo, useContext } from 'react';
 import { throttle } from 'lodash';
 import Card from './Card';
+import { TokenContext } from '../TokenContext';
 import './styles/FeedView.css';
 
 const FeedView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const { token } = useContext(TokenContext);
 
   const MAX_CARDS_ON_PAGE = 1000;
   const EXPECTED_CARDS_ON_PAGE = 5;
@@ -15,7 +17,12 @@ const FeedView = () => {
 
   const fetchPop = useCallback(async () => {
     try {
-      const response = await fetch(`${apiUrl}/pop`);
+      const response = await fetch(`${apiUrl}/pop`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       if (response.ok) {
         const data = await response.json();
         return data;
@@ -26,7 +33,7 @@ const FeedView = () => {
       console.error('Error fetching data:', error.message);
       return null;
     }
-  }, [apiUrl]);
+  }, [apiUrl, token]);
 
   const fetchAndLoadFeeds = useCallback(async () => {
     try {
