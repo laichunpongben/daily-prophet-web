@@ -24,7 +24,8 @@ const Login = () => {
           {
             theme: 'filled_blue',
             size: 'medium',
-            text: 'signin_with',
+            text: 'signin',
+            locale: 'en_US',
           }
         );
       } catch (error) {

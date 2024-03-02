@@ -19,7 +19,6 @@ const SettingView = () => {
     { value: 'arxiv', label: 'Arxiv' },
     { value: 'youtube', label: 'Youtube' },
     { value: 'openweathermap', label: 'OpenWeatherMap' },
-    { value: 'foursquare', label: 'Foursquare' },
   ];
 
   useEffect(() => {
@@ -140,6 +139,8 @@ const SettingView = () => {
     <div className="setting-container">
       <div className="welcome-message">
         {userName && <p>Welcome back, {userName}!</p>}
+      </div>
+      <div className="intro-message">
         <p>Daily Prophet - You are what you read. You control your daily feed.</p>
       </div>
       <div className="portfolio-card">

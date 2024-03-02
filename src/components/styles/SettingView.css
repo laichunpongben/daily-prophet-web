@@ -101,12 +101,27 @@ td.remove-button-column {
 
 .welcome-message {
   text-align: center;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .welcome-message p {
   font-size: 1.0rem;
   font-style: italic;
+  font-weight: bold;
+  margin: 0;
+}
+
+.intro-message {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.intro-message p {
+  font-size: 1.0rem;
+  font-style: italic;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -148,6 +163,10 @@ td.remove-button-column {
   }
 
   .welcome-message p {
+    font-size: 0.8rem;
+  }
+
+  .intro-message p {
     font-size: 0.8rem;
   }
 }
