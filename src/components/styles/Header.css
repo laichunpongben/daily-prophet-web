@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-52%);
+  transform: translateX(-50%);
   width: 100%;
   max-width: 300px;
   z-index: 1;
@@ -24,6 +24,7 @@
   font-size: 14px;
   font-weight: bold;
   width: 100%;
+  text-align: center;
 }
   
 .button-space {
