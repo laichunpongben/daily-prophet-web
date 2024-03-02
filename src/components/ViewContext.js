@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 const ViewContext = createContext();
 
 export const ViewProvider = ({ children }) => {
-  const [view, setView] = useState('feed');
+  const [view, setView] = useState('login');
 
   const handleViewChange = (newView) => {
     setView(newView);

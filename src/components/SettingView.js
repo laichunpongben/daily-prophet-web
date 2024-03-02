@@ -7,7 +7,7 @@ import './styles/SettingView.css';
 
 const SettingView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-  const { token, userName } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   const [setting, setSetting] = useState([]);
   const [weights, setWeights] = useState([]);
@@ -137,9 +137,6 @@ const SettingView = () => {
 
   return (
     <div className="setting-container">
-      <div className="welcome-message">
-        {userName && <p>Welcome back, {userName}!</p>}
-      </div>
       <div className="intro-message">
         <p>Daily Prophet - You are what you read. You control your daily feed.</p>
       </div>

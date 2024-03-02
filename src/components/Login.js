@@ -3,12 +3,13 @@
 
 import React, { useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
-import './styles/Login.css';
+import { useView } from './ViewContext'; 
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const Login = () => {
   const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
+  const { handleViewChange } = useView(); 
 
   useEffect(() => {
     const initializeGoogleSignIn = () => {
@@ -24,8 +25,7 @@ const Login = () => {
           {
             theme: 'filled_blue',
             size: 'medium',
-            text: 'signin',
-            // locale: 'en_US',
+            text: 'signin_with',
           }
         );
       } catch (error) {
@@ -72,6 +72,10 @@ const Login = () => {
       setUserId(userId);
       setUserEmail(userEmail);
       setUserName(userName);
+
+      setTimeout(() => {
+        handleViewChange('feed'); // return to feed after login successfully
+      }, 1500);
     } else {
       // Failed login
       console.error('Login failed. Error details:', response);
@@ -88,7 +92,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-button">
       <div id="g_id_signin" className="g_id_signin"></div>
     </div>
   );

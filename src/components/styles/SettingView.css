@@ -111,19 +111,6 @@ td.remove-button-column {
   font-size: 1.2em;
 }
 
-.welcome-message {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.welcome-message p {
-  font-size: 1.0rem;
-  font-style: italic;
-  font-weight: bold;
-  margin: 0;
-}
-
 .intro-message {
   text-align: center;
   margin-top: 10px;
@@ -172,10 +159,6 @@ td.remove-button-column {
 
   .remove-button {
     font-size: 10px;
-  }
-
-  .welcome-message p {
-    font-size: 0.8rem;
   }
 
   .intro-message p {
