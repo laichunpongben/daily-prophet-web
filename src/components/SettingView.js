@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { TokenContext } from '../TokenContext';
+import { AuthContext } from './AuthContext';
 import './styles/SettingView.css';
 
 const SettingView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-  const { token, userName } = useContext(TokenContext);
+  const { token, userName } = useContext(AuthContext);
 
   const [setting, setSetting] = useState([]);
   const [weights, setWeights] = useState([]);

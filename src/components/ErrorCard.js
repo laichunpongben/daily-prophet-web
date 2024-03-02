@@ -5,7 +5,7 @@ import './styles/Card.css';
 const ErrorCard = ({ message }) => (
   <div className="error-card">
     <div className="error-header">
-      <span>Error</span>
+      <span>Loading...</span>
     </div>
     <div className="error-content">
       <p>{message}</p>

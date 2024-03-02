@@ -2,13 +2,13 @@
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
 import React, { useEffect, useContext } from 'react';
-import { TokenContext } from '../TokenContext';
+import { AuthContext } from './AuthContext';
 import './styles/Login.css';
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const Login = () => {
-  const { setToken, setUserId, setUserEmail, setUserName } = useContext(TokenContext);
+  const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
 
   useEffect(() => {
     const initializeGoogleSignIn = () => {
@@ -25,7 +25,7 @@ const Login = () => {
             theme: 'filled_blue',
             size: 'medium',
             text: 'signin',
-            locale: 'en_US',
+            // locale: 'en_US',
           }
         );
       } catch (error) {

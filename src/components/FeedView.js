@@ -1,12 +1,12 @@
 import React, { useEffect, useCallback, useRef, useState, useMemo, useContext } from 'react';
 import { throttle } from 'lodash';
 import Card from './Card';
-import { TokenContext } from '../TokenContext';
+import { AuthContext } from './AuthContext';
 import './styles/FeedView.css';
 
 const FeedView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-  const { token } = useContext(TokenContext);
+  const { token } = useContext(AuthContext);
 
   const MAX_CARDS_ON_PAGE = 1000;
   const EXPECTED_CARDS_ON_PAGE = 5;
@@ -40,17 +40,24 @@ const FeedView = () => {
       if (!fetching) {
         return;
       }
-
+  
       const data = await fetchPop();
-
+  
       if (data && data.type) {
-        setCards((prevCards) => [...prevCards, data]);
+        // Check if the new card is the same as the previous one
+        const isSameCard = cards.length > 0 && JSON.stringify(cards[cards.length - 1]) === JSON.stringify(data);
+  
+        if (!isSameCard) {
+          setCards((prevCards) => [...prevCards, data]);
+        }
+  
         setFetching(false);
       }
     } catch (error) {
       console.error('Error fetching feeds:', error.message);
     }
-  }, [fetching, fetchPop]);
+  }, [fetching, fetchPop, cards]);
+  
 
   // append cards when reaching bottom
   const throttledHandleScroll = useMemo(() => {
@@ -123,16 +130,19 @@ const FeedView = () => {
   }, [throttledHandleScroll]);
 
   return (
-    <div className="card-container">
-      <div className="inner-container">
-        {cards.map((feedData, index) => (
-          <div key={index} className="card" ref={index === 0 ? topCardRef : null}>
-            <Card data={feedData} />
-          </div>
-        ))}
+    <div>
+      <div className="card-container">
+        <div className="inner-container">
+          {cards.map((feedData, index) => (
+            <div key={index} className="card" ref={index === 0 ? topCardRef : null}>
+              <Card data={feedData} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
+  
 };
 
 export default FeedView;

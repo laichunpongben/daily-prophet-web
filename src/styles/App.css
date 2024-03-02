@@ -64,38 +64,15 @@ header {
   flex-direction: column;
   align-items: stretch;
   margin-bottom: 20px;
+  transition: transform 0.3s ease;
 }
 
-.buttons-section {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-52%);
-  width: 100%;
-  max-width: 300px;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+.show-header {
+  transform: translateY(0);
 }
 
-.header-button {
-  flex: 1;
-  padding: 8px 12px;
-  margin: 15px 10px;
-  background-color: #4285F4;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.button-space {
-  display: inline-block;
-  width: 10px;
+.hide-header {
+  transform: translateY(-100%);
 }
 
 select {
