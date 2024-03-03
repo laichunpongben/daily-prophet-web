@@ -52,7 +52,10 @@ const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
           </IconButton>
           }
           avatar={
-            <Avatar src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?20220706172052" aria-label={type} />
+            <Avatar 
+              src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?20220706172052" 
+              aria-label={type} 
+            />
           }
         />
         <CardContent>

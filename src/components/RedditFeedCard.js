@@ -56,7 +56,10 @@ const RedditFeedCard = ({ type, community, title, author, ups, num_comments, cre
           </IconButton>
           }
           avatar={
-            <Avatar src="https://static.lingoapp.com/avatar/s/75148/4D5390E4-1A1E-429A-8C24-73CF0F35EACD.png" aria-label={type} />
+            <Avatar 
+              src="https://static.lingoapp.com/avatar/s/75148/4D5390E4-1A1E-429A-8C24-73CF0F35EACD.png" 
+              aria-label={type} 
+            />
           }
         />
         <CardContent>

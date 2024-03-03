@@ -1,12 +1,13 @@
 // ThemeSwitch.js
 import React from 'react';
-// import { useTheme } from './context/ThemeContext';
-import Switch from 'react-switch';
-import { CssVarsProvider, useColorScheme } from '@mui/material-next/styles';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import { useColorScheme } from '@mui/material-next/styles';
 import './styles/ThemeSwitch.css';
 
 const ThemeSwitch = () => {
-  // const { themeMode, toggleThemeMode } = useTheme();
   const { mode, setMode } = useColorScheme();
 
   const handleThemeChange = () => {
@@ -19,24 +20,21 @@ const ThemeSwitch = () => {
   };
 
   return (
-    <CssVarsProvider>
-      <div className="theme-switch-container">
-        <span className="theme-label">Enable Dark Theme: </span>
-        <label className="theme-switch">
-          <Switch
+    <div className="theme-switch-container">
+      <Stack direction='row' spacing={1} sx={{alignItems: 'center'}}> 
+        <Typography variant='caption'>
+          Enable Dark Theme: 
+        </Typography>
+        <FormControlLabel control={
+          <Switch  
             onChange={() => handleThemeChange()}
             checked={mode === 'dark'}
-            uncheckedIcon={false}
-            checkedIcon={false}
-            height={24}
-            width={48}
-            onColor="#2196F3"
-            offColor="#D3D3D3"
-          />
-        </label>
-        <span className="theme-text">{mode === 'dark' ? 'Dark' : 'Light'}</span>
-      </div>
-    </CssVarsProvider>  
+          />} label={
+                <Typography variant='caption'>
+                  {mode === 'dark' ? 'Dark' : 'Light'}
+                </Typography>} />
+      </Stack>
+    </div>
   );
 };
 

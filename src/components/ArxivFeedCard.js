@@ -17,10 +17,27 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import CreateIcon from '@mui/icons-material/Create';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import './styles/Card.css';
 import './styles/ArxivFeedCard.css';
 
 const ArxivFeedCard = ({ type, subject, title, summary, author, updated, url }) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleSummaryClick = () => {
+    setOpen(!open);
+  };
+
+  const trimText = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
+  
+    // Trim the text and add ellipsis
+    return text.slice(0, maxLength) + '...';
+  };
+
   return (
     <div className="feed-card arxiv-feed-card">
       <Card>
@@ -33,7 +50,10 @@ const ArxivFeedCard = ({ type, subject, title, summary, author, updated, url }) 
           </IconButton>
           }
           avatar={
-            <Avatar src="https://info.arxiv.org/brand/images/brand-logo-primary.jpg" aria-label={type} />
+            <Avatar 
+              src="https://info.arxiv.org/brand/images/brand-logo-primary.jpg" 
+              aria-label={type} 
+            />
           }
         />
         <CardContent>
@@ -48,11 +68,12 @@ const ArxivFeedCard = ({ type, subject, title, summary, author, updated, url }) 
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding dense>
-                <ListItemButton>
+                <ListItemButton onClick={handleSummaryClick}>
                   <ListItemIcon>
                     <SummarizeIcon fontSize='small' />
                   </ListItemIcon>
-                  <ListItemText primary={summary} primaryTypographyProps={{variant: 'caption'}} />
+                  <ListItemText primary={open ? summary : trimText(summary, 140)} primaryTypographyProps={{variant: 'caption'}} />
+                  {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding dense>

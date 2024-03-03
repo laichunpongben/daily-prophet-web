@@ -70,7 +70,10 @@ const OpenWeatherMapFeedCard = ({
           </IconButton>
           }
           avatar={
-            <Avatar src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/android-app-top-banner.png" aria-label={type} />
+            <Avatar 
+              src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/android-app-top-banner.png" 
+              aria-label={type} 
+            />
           }
         />
         <CardContent>

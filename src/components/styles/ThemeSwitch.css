@@ -15,7 +15,7 @@
 }
 
 .theme-switch {
-  transform: scaleX(0.666) scaleY(0.666);
+  /* transform: scaleX(0.666) scaleY(0.666); */
 }
 
 @media (max-width: 768px) {

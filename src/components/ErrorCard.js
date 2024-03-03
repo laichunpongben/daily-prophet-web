@@ -1,25 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import { useTheme } from './context/ThemeContext';
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
+
 import './styles/Card.css';
 
 const ErrorCard = ({ message }) => {
-  // const { theme } = useTheme(); 
-
   return (
     <div className={`error-card`}>
-      <div className={`error-header`}>
-        <span>Loading...</span>
-      </div>
-      <div className={`error-content`}>
-        <p>{message}</p>
-      </div>
+      <Box sx={{ display: 'flex' }}>
+        <LinearProgress />
+      </Box>
     </div>
   );
-};
-
-ErrorCard.propTypes = {
-  message: PropTypes.string.isRequired,
 };
 
 export default ErrorCard;

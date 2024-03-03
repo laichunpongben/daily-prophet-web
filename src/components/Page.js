@@ -5,13 +5,12 @@ import LoginView from './LoginView';
 import FeedView from './FeedView';
 import SettingView from './SettingView';
 import { useAuth } from './context/AuthContext';
-// import { useTheme } from './context/ThemeContext';
 import { useView } from './context/ViewContext';
+import CssBaseline from '@mui/material/CssBaseline';
 import './styles/Page.css';
 
 function Page() {
   const { token, userId, userEmail, userName, setToken, setUserId, setUserEmail, setUserName } = useAuth();
-  // const { themeMode, setThemeMode } = useTheme();
   const { view, handleViewChange } = useView();
 
   useEffect(() => {
@@ -47,6 +46,7 @@ function Page() {
 
   return (
     <div className={`wrapper`}>
+      <CssBaseline />
       <div>
         <Header />
       </div>

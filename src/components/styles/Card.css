@@ -3,41 +3,11 @@
 .feed-card {
   max-width: 560px;
   margin: 0 auto;
-  /* padding: 20px; */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
   text-align: left;
 }
-
-/* .feed-card.light {
-  background-color: #FEF7FF;
-  color: #1D1B20;
-}
-
-.feed-card.dark {
-  background-color: #141218;
-  color: #E6E0E9;
-} */
-
-/* .key-bubble {
-  display: inline-block;
-  border-radius: 8px;
-  padding: 5px 10px;
-  margin-right: 5px;
-  font-size: 0.8em;
-  font-weight: bold;
-} */
-
-/* .key-bubble.light {
-  background-color: #6750A4;
-  color: #FFFFFF;
-} */
-
-/* .key-bubble.dark {
-  background-color: #D0BCFF;
-  color: #381E72;
-} */
 
 .youtube-container {
   margin-bottom: 10px;
@@ -51,33 +21,28 @@
   }
 }
 
-.text-container {
-  text-align: left;
-  font-size: 14px;
-}
-
 .image-container {
   text-align: left;
   font-size: 14px;
 }
 
 .error-card {
-  border: 2px solid #2d2d2d;
+  /* border: 2px solid #2d2d2d;
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
-  background-color: #d2d2d2;
+  background-color: #d2d2d2; */
 }
 
 .error-header {
-  font-size: 18px;
+  /* font-size: 18px;
   font-weight: bold;
   color:  #2d2d2d;
-  margin-bottom: 8px;
+  margin-bottom: 8px; */
 }
 
 .error-content {
-  color:  #2d2d2d;
+  /* color:  #2d2d2d; */
 }
 
 .weather-icon {
@@ -122,35 +87,21 @@
 
 /* Media query for mobile screens */
 @media (max-width: 767px) {
-  .feed-card {
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  /* .key-bubble {
-    font-size: 0.7em;
-    margin-right: 3px;
-  } */
-
-  .text-container {
-    font-size: 12px;
-  }
-
   .image-container {
     font-size: 12px;
   }
 
   .error-card {
-    padding: 12px;
-    margin: 12px;
+    /* padding: 12px;
+    margin: 12px; */
   }
 
   .error-header {
-    font-size: 14px;
-    margin-bottom: 6px;
+    /* font-size: 14px;
+    margin-bottom: 6px; */
   }
   .error-content {
-    font-size: 10px;
+    /* font-size: 10px; */
   }
 
   .weather-icon {
