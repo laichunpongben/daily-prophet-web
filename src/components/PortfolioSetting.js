@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from './context/AuthContext';
 import  './styles/PortfolioSetting.css';
 
 const PortfolioSetting = () => {

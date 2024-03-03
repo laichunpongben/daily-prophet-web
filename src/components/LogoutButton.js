@@ -1,7 +1,7 @@
 // Logout.js
 import React, { useContext } from 'react';
-import { AuthContext } from './AuthContext';
-import { useView } from './ViewContext';
+import { AuthContext } from './context/AuthContext';
+import { useView } from './context/ViewContext';
 
 const LogoutButton = () => {
   const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);

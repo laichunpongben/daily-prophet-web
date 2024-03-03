@@ -4,11 +4,14 @@ import Header from './Header';
 import LoginView from './LoginView';
 import FeedView from './FeedView';
 import SettingView from './SettingView';
-import { useAuth } from './AuthContext';
-import { useView } from './ViewContext';
+import { useAuth } from './context/AuthContext';
+// import { useTheme } from './context/ThemeContext';
+import { useView } from './context/ViewContext';
+import './styles/Page.css';
 
 function Page() {
   const { token, userId, userEmail, userName, setToken, setUserId, setUserEmail, setUserName } = useAuth();
+  // const { themeMode, setThemeMode } = useTheme();
   const { view, handleViewChange } = useView();
 
   useEffect(() => {
@@ -34,8 +37,16 @@ function Page() {
     }
   }, [token, userId, userEmail, userName, setToken, setUserId, setUserEmail, setUserName, handleViewChange]);
 
+  // useEffect(() => {
+  //   const storedThemeMode = localStorage.getItem('themeMode');
+
+  //   if (themeMode === null && storedThemeMode) {
+  //     setThemeMode(storedThemeMode);
+  //   }
+  // });
+
   return (
-    <div className="wrapper">
+    <div className={`wrapper`}>
       <div>
         <Header />
       </div>

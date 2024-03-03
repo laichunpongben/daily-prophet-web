@@ -1,12 +1,14 @@
-import React, { useEffect, useCallback, useRef, useState, useMemo, useContext } from 'react';
+import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
 import { throttle } from 'lodash';
 import Card from './Card';
-import { AuthContext } from './AuthContext';
+import { useAuth } from './context/AuthContext';
+// import { useTheme } from './context/ThemeContext';
 import './styles/FeedView.css';
 
 const FeedView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-  const { token } = useContext(AuthContext);
+  const { token } = useAuth();
+  // const { theme } = useTheme();
 
   const MAX_CARDS_ON_PAGE = 1000;
   const EXPECTED_CARDS_ON_PAGE = 5;
@@ -131,10 +133,10 @@ const FeedView = () => {
 
   return (
     <div>
-      <div className="card-container">
-        <div className="inner-container">
+      <div className={`card-container`}>
+        <div className={`inner-container`}>
           {cards.map((feedData, index) => (
-            <div key={index} className="card" ref={index === 0 ? topCardRef : null}>
+            <div key={index} className={`card`} ref={index === 0 ? topCardRef : null}>
               <Card data={feedData} />
             </div>
           ))}

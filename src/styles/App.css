@@ -59,14 +59,6 @@ header {
   margin-bottom: 20px;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
-}
-
 .show-header {
   transform: translateY(0);
 }
@@ -83,9 +75,5 @@ select {
 @media (max-width: 768px) {
   .App {
     padding: 10px; /* Adjust padding for mobile view */
-  }
-
-  .header-button {
-    font-size: 12px;
   }
 }

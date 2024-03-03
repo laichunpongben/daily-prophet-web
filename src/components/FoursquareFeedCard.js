@@ -1,16 +1,19 @@
 import React from 'react';
+// import { useTheme } from './context/ThemeContext';
 import './styles/Card.css';
 
 const FoursquareFeedCard = ({ type, name, address, category, distance, latitude, longitude, open, url }) => {
+  // const { theme } = useTheme();
+
   const renderKeyBubble = (key) => (
-    <div className="key-bubble">
+    <div className={`key-bubble`}>
       {key}
     </div>
   );
 
   return (
-    <div className="feed-card">
-      <div className="text-container">
+    <div className={`feed-card`}>
+      <div className={`text-container`}>
         <h3>{name}</h3>
         <p>{renderKeyBubble('Address')} {address}</p>
         <p>{renderKeyBubble('Category')} {category}</p>

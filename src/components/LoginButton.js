@@ -2,8 +2,8 @@
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
 import React, { useEffect, useContext } from 'react';
-import { AuthContext } from './AuthContext';
-import { useView } from './ViewContext'; 
+import { AuthContext } from './context/AuthContext';
+import { useView } from './context/ViewContext'; 
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 

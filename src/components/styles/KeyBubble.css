@@ -1,0 +1,5 @@
+/* styles.css */
+
+.key-bubble {
+  transform: scale(0.666) translateX(-30px);
+}

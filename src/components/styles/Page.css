@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.wrapper.light {
+  background-color: #FFFFFF;
+  color: #1D1B20;
+}
+
+.wrapper.dark {
+  background-color: #0F0D13;
+  color: #E6E0E9;
+}
