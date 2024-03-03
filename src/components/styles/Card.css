@@ -26,25 +26,6 @@
   font-size: 14px;
 }
 
-.error-card {
-  /* border: 2px solid #2d2d2d;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
-  background-color: #d2d2d2; */
-}
-
-.error-header {
-  /* font-size: 18px;
-  font-weight: bold;
-  color:  #2d2d2d;
-  margin-bottom: 8px; */
-}
-
-.error-content {
-  /* color:  #2d2d2d; */
-}
-
 .weather-icon {
   width: 48px;
   height: 48px;
@@ -89,19 +70,6 @@
 @media (max-width: 767px) {
   .image-container {
     font-size: 12px;
-  }
-
-  .error-card {
-    /* padding: 12px;
-    margin: 12px; */
-  }
-
-  .error-header {
-    /* font-size: 14px;
-    margin-bottom: 6px; */
-  }
-  .error-content {
-    /* font-size: 10px; */
   }
 
   .weather-icon {

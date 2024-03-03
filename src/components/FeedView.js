@@ -2,16 +2,15 @@ import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react'
 import { throttle } from 'lodash';
 import Card from './Card';
 import { useAuth } from './context/AuthContext';
-// import { useTheme } from './context/ThemeContext';
 import './styles/FeedView.css';
 
 const FeedView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
   const { token } = useAuth();
-  // const { theme } = useTheme();
 
   const MAX_CARDS_ON_PAGE = 1000;
   const EXPECTED_CARDS_ON_PAGE = 5;
+  const CARDS_NO_REPEAT = 50;
 
   const [fetching, setFetching] = useState(true);
   const [cards, setCards] = useState([]);
@@ -47,7 +46,7 @@ const FeedView = () => {
   
       if (data && data.type) {
         // Check if the new card is the same as the previous one
-        const isSameCard = cards.length > 0 && JSON.stringify(cards[cards.length - 1]) === JSON.stringify(data);
+        const isSameCard = cards.length > 0 && cards.slice(-CARDS_NO_REPEAT).some((card) => JSON.stringify(card) === JSON.stringify(data));
   
         if (!isSameCard) {
           setCards((prevCards) => [...prevCards, data]);
