@@ -15,7 +15,7 @@ const ErrorCard = ({ message }) => {
     <div className="error-card">
       <Card>
         <CardContent>
-          <Stack spacing={1}>
+          <Stack spacing={1} sx={{display: 'flex', justifyContent: 'center'}}>
             <Alert variant="outlined" severity="warning">
               <Typography variant='caption'>
                 Loading feeds... If the issue persists, please check the Setting!

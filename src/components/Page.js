@@ -7,11 +7,13 @@ import SettingView from './SettingView';
 import { useAuth } from './context/AuthContext';
 import { useView } from './context/ViewContext';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useColorScheme } from '@mui/material-next/styles';
 import './styles/Page.css';
 
 function Page() {
   const { token, userId, userEmail, userName, setToken, setUserId, setUserEmail, setUserName } = useAuth();
   const { view, handleViewChange } = useView();
+  const { mode, setMode } = useColorScheme();
 
   useEffect(() => {
     // Check local storage for token and user data
@@ -36,13 +38,13 @@ function Page() {
     }
   }, [token, userId, userEmail, userName, setToken, setUserId, setUserEmail, setUserName, handleViewChange]);
 
-  // useEffect(() => {
-  //   const storedThemeMode = localStorage.getItem('themeMode');
+  useEffect(() => {
+    const storedMode = localStorage.getItem('mode');
 
-  //   if (themeMode === null && storedThemeMode) {
-  //     setThemeMode(storedThemeMode);
-  //   }
-  // });
+    if (storedMode !== null && storedMode !== mode) {
+      setMode(storedMode);
+    }
+  }, []);
 
   return (
     <div className={`wrapper`}>

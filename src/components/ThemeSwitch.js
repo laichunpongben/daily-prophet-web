@@ -11,12 +11,10 @@ const ThemeSwitch = () => {
   const { mode, setMode } = useColorScheme();
 
   const handleThemeChange = () => {
-    if (mode === 'light') {
-      setMode('dark');
-    } else {
-      setMode('light');
-    }
-    // localStorage.setItem('themeMode', mode); 
+    const newMode = (mode === 'light' ? 'dark' : 'light');
+    setMode(newMode);
+    localStorage.setItem('mode', newMode); 
+    console.log('Save mode: ', newMode);
   };
 
   return (

@@ -2,6 +2,8 @@
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
 import React, { useEffect, useContext } from 'react';
+import { useColorScheme } from '@mui/material-next/styles';
+import Box from '@mui/material/Box';
 import { AuthContext } from './context/AuthContext';
 import { useView } from './context/ViewContext'; 
 
@@ -10,6 +12,7 @@ const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const LoginButton = () => {
   const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
   const { handleViewChange } = useView(); 
+  const { mode } = useColorScheme();
 
   useEffect(() => {
     const initializeGoogleSignIn = () => {
@@ -23,7 +26,7 @@ const LoginButton = () => {
         window.google.accounts.id.renderButton(
           document.getElementById('g_id_signin'),
           {
-            theme: 'filled_blue',
+            theme: 'outline',
             size: 'medium',
             text: 'signin_with',
           }
@@ -81,7 +84,7 @@ const LoginButton = () => {
 
       setTimeout(() => {
         handleViewChange('feed'); // return to feed after login successfully
-      }, 1500);
+      }, 2000);
     } else {
       // Failed login
       console.error('Login failed. Error details:', response);
@@ -97,9 +100,13 @@ const LoginButton = () => {
     return JSON.parse(jsonPayload);
   };
 
+  const shadowColor = (mode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)');
+
   return (
     <div className="login-button">
-      <div id="g_id_signin" className="g_id_signin"></div>
+      <Box sx={{border: '1px solid', borderRadius: '5px', padding: '0px 0px', boxShadow: `2px 2px 2px ${shadowColor}`}}>
+        <div id="g_id_signin" className="g_id_signin"></div>
+      </Box>
     </div>
   );
 };

@@ -17,33 +17,3 @@
 .login-button {
   margin: 8px 0;
 }
-
-.logout-button {
-  padding: 8px 20px;
-  margin: 8px 0;
-  background-color: #4285F4;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.welcome-message {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-  
-.welcome-message p {
-  font-size: 1.0rem;
-  font-style: italic;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .welcome-message p {
-    font-size: 0.8rem;
-  }
-}

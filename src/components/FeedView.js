@@ -9,7 +9,7 @@ const FeedView = () => {
   const { token } = useAuth();
 
   const MAX_CARDS_ON_PAGE = 1000;
-  const EXPECTED_CARDS_ON_PAGE = 5;
+  const EXPECTED_CARDS_ON_PAGE = 10;
   const CARDS_NO_REPEAT = 50;
 
   const [fetching, setFetching] = useState(true);
