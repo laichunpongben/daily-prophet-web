@@ -83,11 +83,11 @@ const PortfolioSettingCard = () => {
       // force update the view
       setTimeout(() => {
         setView('login');
-      }, 25);
+      }, 50);
 
       setTimeout(() => {
         setView('setting');
-      }, 50);
+      }, 100);
 
     } catch (error) {
       console.error('Error resetting portfolio:', error.message);
@@ -203,6 +203,7 @@ const PortfolioSettingCard = () => {
                       </StyledTableCell>
                       <StyledTableCell sx={{ width: '5%' }}>
                         <Typography variant='subtitle2'>
+                          Action
                         </Typography>
                       </StyledTableCell>
                     </StyledTableRow>
