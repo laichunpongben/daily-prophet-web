@@ -191,7 +191,7 @@ const PortfolioSettingCard = () => {
                           Type
                         </Typography>
                       </StyledTableCell>
-                      <StyledTableCell>
+                      <StyledTableCell sx={{ width: '100%' }}>
                         <Typography variant='subtitle2'>
                           Subject
                         </Typography>
@@ -201,9 +201,8 @@ const PortfolioSettingCard = () => {
                           Weight
                         </Typography>
                       </StyledTableCell>
-                      <StyledTableCell>
+                      <StyledTableCell sx={{ width: '5%' }}>
                         <Typography variant='subtitle2'>
-                          Action
                         </Typography>
                       </StyledTableCell>
                     </StyledTableRow>
