@@ -1,6 +1,6 @@
 /* SettingView.css */
 
-.setting-container {
+.setting-view-container {
   display: flex;
   flex-direction: column;
   align-items: center;

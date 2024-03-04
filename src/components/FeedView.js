@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
 import { throttle } from 'lodash';
+import Container from '@mui/material/Container';
 import Card from './Card';
 import { useAuth } from './context/AuthContext';
 import './styles/FeedView.css';
@@ -131,16 +132,18 @@ const FeedView = () => {
   }, [throttledHandleScroll]);
 
   return (
-    <div>
-      <div className={`card-container`}>
-        <div className={`inner-container`}>
-          {cards.map((feedData, index) => (
-            <div key={index} className={`card`} ref={index === 0 ? topCardRef : null}>
-              <Card data={feedData} />
-            </div>
-          ))}
+    <div className="feed-view-container">
+      <Container maxWidth="sm" spacing={0} sx={{padding: '0px', margin: '0px'}}>
+        <div className="card-container">
+          <div className="inner-container">
+            {cards.map((feedData, index) => (
+              <div key={index} className="card" ref={index === 0 ? topCardRef : null}>
+                <Card data={feedData} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
   

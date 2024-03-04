@@ -9,7 +9,7 @@ import './styles/SettingView.css';
 
 const SettingView = () => {
   return (
-    <div className="setting-container">
+    <div className="setting-view-container">
       <Container maxWidth="sm" spacing={0} sx={{padding: '0px', margin: '0px'}}>
         <Stack spacing={1} sx={{display: 'flex', justifyContent: 'center'}}>
           <Box sx={{display: 'flex', justifyContent: 'center'}}>
