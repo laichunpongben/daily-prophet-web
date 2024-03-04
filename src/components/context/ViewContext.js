@@ -6,12 +6,8 @@ const ViewContext = createContext();
 export const ViewProvider = ({ children }) => {
   const [view, setView] = useState('login');
 
-  const handleViewChange = (newView) => {
-    setView(newView);
-  };
-
   return (
-    <ViewContext.Provider value={{ view, handleViewChange }}>
+    <ViewContext.Provider value={{ view, setView }}>
       {children}
     </ViewContext.Provider>
   );

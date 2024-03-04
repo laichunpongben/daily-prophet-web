@@ -1,17 +1,17 @@
 // Login.js
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useColorScheme } from '@mui/material-next/styles';
 import Box from '@mui/material/Box';
-import { AuthContext } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
 import { useView } from './context/ViewContext'; 
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const LoginButton = () => {
-  const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
-  const { handleViewChange } = useView(); 
+  const { setToken, setUserId, setUserEmail, setUserName } = useAuth();
+  const { view, setView } = useView(); 
   const { mode } = useColorScheme();
 
   useEffect(() => {
@@ -47,6 +47,7 @@ const LoginButton = () => {
     return () => {
       document.body.removeChild(script);
     };
+  // eslint-disable-next-line
   }, []);
 
   const handleCredentialResponse = (response) => {
@@ -83,7 +84,9 @@ const LoginButton = () => {
       localStorage.setItem('userName', userName);
 
       setTimeout(() => {
-        handleViewChange('feed'); // return to feed after login successfully
+        if (view === 'login') {
+          setView('feed'); // return to feed after login successfully
+        }
       }, 2000);
     } else {
       // Failed login

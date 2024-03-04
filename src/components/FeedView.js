@@ -3,7 +3,6 @@ import { throttle } from 'lodash';
 import Container from '@mui/material/Container';
 import Card from './Card';
 import { useAuth } from './context/AuthContext';
-import './styles/FeedView.css';
 
 const FeedView = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';

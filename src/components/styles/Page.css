@@ -1,6 +1,30 @@
+/* Page.css */
+
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   transition: transform 0.3s ease;
+}
+
+.tab-list-container {
+  /* position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto; */
+}
+
+.tab-panel-container {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  flex-grow: 1;
+  height: calc(100vh - 100px); */
 }

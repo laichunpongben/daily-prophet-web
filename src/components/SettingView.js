@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import ThemeSettingCard from './ThemeSettingCard';
 import PortfolioSettingCard from './PortfolioSettingCard';
-import './styles/SettingView.css';
 
 const SettingView = () => {
   return (

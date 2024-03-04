@@ -1,5 +1,5 @@
 // PortfolioSetting.js
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -21,13 +21,13 @@ import Button from '@mui/material-next/Button';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
-import { AuthContext } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
 // import  './styles/PortfolioSetting.css';
 
 const PortfolioSettingCard = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
-  const { token } = useContext(AuthContext);
+  const { token } = useAuth();
 
   const [setting, setSetting] = useState([]);
   const [weights, setWeights] = useState([]);
@@ -50,7 +50,8 @@ const PortfolioSettingCard = () => {
           },
         });
         const data = await response.json();
-        // console.log('Portfolio Data:', data);
+
+        console.log('Portfolio Data:', data);
         setSetting(data.setting);
         setWeights(data.setting.map((s) => Math.max(0, s[2])));
         setSubjects(data.setting.map((s) => s[1]));

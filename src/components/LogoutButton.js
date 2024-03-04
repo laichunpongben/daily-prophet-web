@@ -1,15 +1,15 @@
 // Logout.js
-import React, { useContext } from 'react';
+import React from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Typography from '@mui/material/Typography';
 import { useColorScheme } from '@mui/material-next/styles';
-import { AuthContext } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
 import { useView } from './context/ViewContext';
 
 const LogoutButton = () => {
-  const { setToken, setUserId, setUserEmail, setUserName } = useContext(AuthContext);
-  const { handleViewChange } = useView();
+  const { setToken, setUserId, setUserEmail, setUserName } = useAuth();
+  const { setView } = useView();
   const { mode } = useColorScheme();
 
   const handleLogout = () => {
@@ -25,7 +25,7 @@ const LogoutButton = () => {
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userName');
 
-    handleViewChange('login'); // Redirect to login view after logout
+    setView('login'); // Redirect to login view after logout
   };
 
   const shadowColor = (mode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)');
