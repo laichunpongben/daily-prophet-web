@@ -178,7 +178,7 @@ const PortfolioSettingCard = () => {
           <CardContent>
             <Stack spacing={2} sx={{display: 'flex', justifyContent: 'center'}}>
               <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="portfolio setting table">
+                <Table aria-label="portfolio setting table">
                   <TableHead>
                     <StyledTableRow>
                       <StyledTableCell>
@@ -191,7 +191,7 @@ const PortfolioSettingCard = () => {
                           Subject
                         </Typography>
                       </StyledTableCell>
-                      <StyledTableCell>
+                      <StyledTableCell sx={{ width: '10%' }}>
                         <Typography variant='subtitle2'>
                           Weight
                         </Typography>

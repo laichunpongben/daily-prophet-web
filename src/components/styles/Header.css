@@ -11,37 +11,3 @@
   justify-content: space-around;
   margin: 0 auto;
 }
-  
-.header-button {
-  flex: 1;
-  padding: 8px 20px;
-  margin: 10px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  width: 100%;
-  text-align: center;
-}
-
-/* .header-button.light {
-  background-color: #6750A4;
-  color: #FFFFFF;
-}
-
-.header-button.dark {
-  background-color: #D0BCFF; 
-  color: #381E72;
-} */
-  
-.button-space {
-  display: inline-block;
-  width: 10px;
-}
-
-/* Add media query for mobile view */
-@media (max-width: 768px) {
-  .header-button {
-    font-size: 12px;
-  }
-}

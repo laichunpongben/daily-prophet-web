@@ -10,36 +10,3 @@
   margin-top: 60px;
   height: calc(100vh - 100px); /* Adjust 100px according to your design */
 }
-
-.section {
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  text-align: left;
-  width: 90%;
-  max-width: 600px;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.section-header {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.intro-message {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.intro-message p {
-  font-size: 1.0rem;
-  font-style: italic;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .intro-message p {
-    font-size: 0.8rem;
-  }
-}
