@@ -7,6 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import TabList from '@mui/lab/TabList';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { parseJwt } from './Auth';
 import LoginView from './LoginView';
 import FeedView from './FeedView';
 import SettingView from './SettingView';
@@ -33,12 +34,31 @@ function Page() {
       userEmail === null && storedUserEmail &&
       userName === null && storedUserName
     ) {
-      setToken(storedToken);
-      setUserId(storedUserId);
-      setUserEmail(storedUserEmail);
-      setUserName(storedUserName);
+      // check for token exp, default expire for Google Sign-in is 1 hr
+      const decodedToken = parseJwt(storedToken);
+      const expire = decodedToken.exp;
+      console.log('expire: ', expire);
 
-      setView('feed');
+      const current = Math.ceil(Date.now() / 1000);
+      console.log('current: ', current);
+
+      if (expire > current) {  // expire is in the future
+        console.log("Restore token from local!")
+
+        setToken(storedToken);
+        setUserId(storedUserId);
+        setUserEmail(storedUserEmail);
+        setUserName(storedUserName);
+  
+        setView('feed');
+      } else {
+        console.log("Token expired!")
+
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+      }
     }
   // eslint-disable-next-line
   }, []);

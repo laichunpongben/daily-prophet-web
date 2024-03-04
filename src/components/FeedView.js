@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
-import { throttle } from 'lodash';
 import Container from '@mui/material/Container';
+import { throttle } from 'lodash';
 import Card from './Card';
 import { useAuth } from './context/AuthContext';
 

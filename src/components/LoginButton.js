@@ -4,6 +4,7 @@
 import React, { useEffect } from 'react';
 import { useColorScheme } from '@mui/material-next/styles';
 import Box from '@mui/material/Box';
+import { parseJwt } from './Auth';
 import { useAuth } from './context/AuthContext';
 import { useView } from './context/ViewContext'; 
 
@@ -92,15 +93,6 @@ const LoginButton = () => {
       // Failed login
       console.error('Login failed. Error details:', response);
     }
-  };
-
-  // Function to parse JWT token
-  const parseJwt = (token) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-
-    return JSON.parse(jsonPayload);
   };
 
   const shadowColor = (mode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)');

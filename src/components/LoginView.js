@@ -14,7 +14,7 @@ const LoginView = () => {
   return (
     <div className="login-view-container">
       <Container maxWidth="sm" spacing={0} sx={{padding: '0px', margin: '0px'}}>
-        <Stack spacing={2} sx={{display: 'flex', justifyContent: 'center', minHeight: '90vh'}}>   {/* center vertically in screen */}
+        <Stack spacing={2} sx={{display: 'flex', justifyContent: 'center', minHeight: '80vh'}}>   {/* center vertically in screen */}
           <Box sx={{display: 'flex', justifyContent: 'center'}}>
             {userName ? (
               <Typography variant='overline'>Welcome back, {userName}!</Typography>

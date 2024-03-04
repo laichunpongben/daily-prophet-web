@@ -17,12 +17,13 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Button from '@mui/material-next/Button';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+import AddRowButton from './AddRowButton';
+import SaveButton from './SaveButton';
+import ResetButton from './ResetButton';
 import { useAuth } from './context/AuthContext';
-// import  './styles/PortfolioSetting.css';
 
 const PortfolioSettingCard = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
@@ -148,7 +149,7 @@ const PortfolioSettingCard = () => {
     setSetting(newTypes.map((type, i) => [type, newValues[i], newWeights[i]]));
   };
 
-  const handleAddRow = () => {
+  const handleAddRowButtonClick = () => {
     setTypes([...types, typeOptions[0].value]); // Add a new row with the default type
     setSubjects([...subjects, '']); // Add a new row with an empty value
     setWeights([...weights, 0.01]); // Add a new row with weight 0.01
@@ -272,21 +273,9 @@ const PortfolioSettingCard = () => {
               </TableContainer>
               <div className="portfolio-card-container">
                 <Box sx={{display: 'flex', justifyContent: 'space-around'}}>
-                  <Button variant='filled' color='secondary' size="small" onClick={handleAddRow}>
-                    <Typography variant='caption'>
-                      Add Row
-                    </Typography>
-                  </Button>
-                  <Button variant='filled' color='secondary' size="small" onClick={handleSaveButtonClick}>
-                    <Typography variant='caption'>
-                      Save
-                    </Typography>
-                  </Button>
-                  <Button variant='filled' color='secondary' size="small" onClick={handleResetButtonClick}>
-                    <Typography variant='caption'>
-                      Reset
-                    </Typography>
-                  </Button>
+                  <AddRowButton onClick={handleAddRowButtonClick} />
+                  <SaveButton onClick={handleSaveButtonClick} />
+                  <ResetButton onClick={handleResetButtonClick} />
                 </Box>
               </div>
             </Stack>
