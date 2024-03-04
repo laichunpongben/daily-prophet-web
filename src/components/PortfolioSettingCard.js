@@ -207,13 +207,14 @@ const PortfolioSettingCard = () => {
                   {types.map((t, index) => (
                     <StyledTableRow key={`${types[index]}/${subjects[index]}`}>
                       <StyledTableCell scope="row">
-                        <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
+                        <FormControl variant="standard" size="small">
                           <Select
                             labelId="portfolio-setting-select-standard-label"
                             id="portfolio-setting-select-standard"
                             value={types[index]}
                             onChange={(event) => handleTypeChange(index, event.target.value)}
                             label="Type"
+                            autoWidth
                           >
                             <MenuItem value='reddit'>
                               <Typography variant='caption'>
