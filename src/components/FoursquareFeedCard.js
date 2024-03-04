@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useTheme } from './context/ThemeContext';
-import './styles/Card.css';
+import './styles/FeedCard.css';
 
 const FoursquareFeedCard = ({ type, name, address, category, distance, latitude, longitude, open, url }) => {
   // const { theme } = useTheme();

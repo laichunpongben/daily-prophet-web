@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Avatar from '@mui/material/Avatar';
-import './styles/Card.css';
+import './styles/FeedCard.css';
 
 const getWeatherIconUrl = (iconCode) => {
   const baseUrl = 'https://openweathermap.org/img/wn/';

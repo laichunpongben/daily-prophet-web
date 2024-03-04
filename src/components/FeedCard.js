@@ -5,9 +5,9 @@ import YoutubeFeedCard from './YoutubeFeedCard';
 import OpenWeatherMapFeedCard from './OpenWeatherMapFeedCard';
 import FoursquareFeedCard from './FoursquareFeedCard';
 import ErrorCard from './ErrorCard';
-import './styles/Card.css';
+import './styles/FeedCard.css';
 
-const Card = ({ data }) => {
+const FeedCard = ({ data }) => {
   const { type, ...cardData } = data;
 
   // console.log('card data:', cardData);
@@ -34,4 +34,4 @@ const Card = ({ data }) => {
   }
 };
 
-export default Card;
+export default FeedCard;

@@ -16,7 +16,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SubjectIcon from '@mui/icons-material/Subject';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import './styles/Card.css';
+import './styles/FeedCard.css';
 
 const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });

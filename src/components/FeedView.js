@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import { throttle } from 'lodash';
-import Card from './Card';
+import FeedCard from './FeedCard';
 import { useAuth } from './context/AuthContext';
 
 const FeedView = () => {
@@ -132,17 +133,17 @@ const FeedView = () => {
 
   return (
     <div className="feed-view-container">
-      <Container maxWidth="sm" spacing={0} sx={{padding: '0px', margin: '0px'}}>
-        <div className="card-container">
-          <div className="inner-container">
+      <div className="feed-card-container">
+        <Container maxWidth="sm" spacing={0} sx={{padding: 0, margin: 0}}>
+          <Stack spacing={1} sx={{display: 'flex', justifyContent: 'center'}}>
             {cards.map((feedData, index) => (
-              <div key={index} className="card" ref={index === 0 ? topCardRef : null}>
-                <Card data={feedData} />
+              <div key={index} className="feed-card" ref={index === 0 ? topCardRef : null}>
+                <FeedCard data={feedData} />
               </div>
             ))}
-          </div>
-        </div>
-      </Container>
+          </Stack>
+        </Container>
+      </div>
     </div>
   );
   

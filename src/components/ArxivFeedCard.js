@@ -19,7 +19,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import './styles/Card.css';
+import './styles/FeedCard.css';
 
 const ArxivFeedCard = ({ type, subject, title, summary, author, updated, url }) => {
   const [open, setOpen] = React.useState(false);

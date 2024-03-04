@@ -19,7 +19,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CommentIcon from '@mui/icons-material/Comment';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import './styles/Card.css';
+import './styles/FeedCard.css';
 
 const RedditFeedCard = ({ type, community, title, author, ups, num_comments, created_utc, url }) => {
   const formatDate = (timestamp) => {

@@ -1,6 +1,7 @@
 // Page.js]
 import React, { useEffect } from 'react';
 import { useColorScheme } from '@mui/material-next/styles';
+import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
@@ -76,25 +77,44 @@ function Page() {
     setView(newTab);
   };
 
+  const StyledBox = styled(Box)(({ theme }) => ({
+    backgroundColor: theme.palette.background.default,
+  }));
+
   return (
     <div className="wrapper">
       <CssBaseline />
       <TabContext value={view}>
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+        <StyledBox sx={{
+          display: 'flex', 
+          justifyContent: 'center', 
+          padding: 0, 
+          margin: 0, 
+          position: 'fixed',
+          top: 0,
+          width: '100vw',
+          zIndex: 1,
+        }}>
           <TabList onChange={handleTabChange} aria-label="top navigation bar">
             <Tab label='Feed' value='feed'/>
             <Tab label='Setting' value='setting' />
             <Tab label='Login' value='login' />
           </TabList>
-        </Box>
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
-          <TabPanel value="feed">
+        </StyledBox>
+        <Box sx={{
+          display: 'flex', 
+          justifyContent: 'center', 
+          padding: 0, 
+          margin: 0,
+          marginTop: 6,
+        }}>
+          <TabPanel value="feed" sx={{padding: 0, margin: 0}}>
             <FeedView />
           </TabPanel>
-          <TabPanel value="setting">
+          <TabPanel value="setting" sx={{padding: 0, margin: 0}}>
             <SettingView />
           </TabPanel>
-          <TabPanel value="login">
+          <TabPanel value="login" sx={{padding: 0, margin: 0}}>
             <LoginView />
           </TabPanel>
         </Box>
