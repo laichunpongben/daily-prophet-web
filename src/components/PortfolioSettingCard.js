@@ -172,7 +172,7 @@ const PortfolioSettingCard = () => {
       <div className="portfolio-card-container">
         <Card>
           <CardHeader
-          title='Content Porfolio' 
+          title='Content Portfolio' 
           titleTypographyProps={{variant: 'button'}}
           />
           <CardContent>
