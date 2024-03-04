@@ -42,43 +42,36 @@ const FeedView = () => {
       if (!fetching) {
         return;
       }
-  
+
       const data = await fetchPop();
-  
+
       if (data && data.type) {
         // Check if the new card is the same as the previous one
         const isSameCard = cards.length > 0 && cards.slice(-CARDS_NO_REPEAT).some((card) => JSON.stringify(card) === JSON.stringify(data));
-  
+
         if (!isSameCard) {
           setCards((prevCards) => [...prevCards, data]);
         }
-  
+
         setFetching(false);
       }
     } catch (error) {
       console.error('Error fetching feeds:', error.message);
     }
   }, [fetching, fetchPop, cards]);
-  
+
 
   // append cards when reaching bottom
   const throttledHandleScroll = useMemo(() => {
     return throttle(() => {
-      const container = document.querySelector('.card-container');
-      if (container) {
-        const scrollPosition = container.scrollTop;
-        const totalHeight = container.scrollHeight;
-        const containerHeight = container.offsetHeight;
-        const bufferHeightFactor = 0.2;
+      const bufferHeight = 350;
+      const isReachBottom = (window.innerHeight + window.scrollY) + bufferHeight >= document.body.offsetHeight;
 
-        const isReachBottom = scrollPosition + containerHeight * (1 + bufferHeightFactor) >= totalHeight;
-
-        if (isReachBottom) {
-          if (!fetching) {
-            setFetching(true);
-          }
-          fetchAndLoadFeeds();
+      if (isReachBottom) {
+        if (!fetching) {
+          setFetching(true);
         }
+        fetchAndLoadFeeds();
       }
     }, 100);
   }, [fetching, fetchAndLoadFeeds]);
@@ -88,14 +81,8 @@ const FeedView = () => {
     if (cards.length > MAX_CARDS_ON_PAGE) {
       // console.log('Length of cards >>> ', MAX_CARDS_ON_PAGE, ': ', cards.length);
 
-      const topCardHeight = topCardRef.current ? topCardRef.current.offsetHeight : 0;
-      // console.log('Top card height:', topCardHeight);
-
       setFetching(false);
-      setCards((prevCards) => prevCards.slice(1));
-
-      const container = document.querySelector('.card-container');
-      container.scrollTop -= topCardHeight;
+      setCards((prevCards) => prevCards.slice(-EXPECTED_CARDS_ON_PAGE));
     }
   }, [cards]);
 
@@ -105,7 +92,7 @@ const FeedView = () => {
       // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
       setFetching(true);
     }
-  }, [cards]);
+  }); // always checking
 
   useEffect(() => {
     if (cards.length === MAX_CARDS_ON_PAGE) {
@@ -114,28 +101,31 @@ const FeedView = () => {
   }, [cards]);
 
   useEffect(() => {
+    if (cards.length > 1 && cards[0]?.type === "error") {
+      console.log("Remove error card");
+      setCards((prevCards) => prevCards.slice(1));
+    }
+  });
+
+  useEffect(() => {
     if (fetching) {
       fetchAndLoadFeeds();
     }
   }, [fetchAndLoadFeeds, fetching]);
 
   useEffect(() => {
-    const container = document.querySelector('.card-container');
+    window.addEventListener('scroll', throttledHandleScroll);
 
-    if (container) {
-      container.addEventListener('scroll', throttledHandleScroll);
-
-      return () => {
-        container.removeEventListener('scroll', throttledHandleScroll);
-      };
-    }
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+    };
   }, [throttledHandleScroll]);
 
   return (
     <div className="feed-view-container">
       <div className="feed-card-container">
-        <Container maxWidth="sm" spacing={0} sx={{padding: 0, margin: 0}}>
-          <Stack spacing={1} sx={{display: 'flex', justifyContent: 'center'}}>
+        <Container maxWidth="sm" spacing={0} sx={{ padding: 0, margin: 0 }}>
+          <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
             {cards.map((feedData, index) => (
               <div key={index} className="feed-card" ref={index === 0 ? topCardRef : null}>
                 <FeedCard data={feedData} />
@@ -146,7 +136,7 @@ const FeedView = () => {
       </div>
     </div>
   );
-  
+
 };
 
 export default FeedView;

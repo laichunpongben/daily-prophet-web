@@ -1,4 +1,4 @@
-// Page.js]
+// Page.js
 import React, { useEffect } from 'react';
 import { useColorScheme } from '@mui/material-next/styles';
 import { styled } from '@mui/material/styles';
@@ -9,9 +9,10 @@ import TabList from '@mui/lab/TabList';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { parseJwt } from './Auth';
-import LoginView from './LoginView';
 import FeedView from './FeedView';
 import SettingView from './SettingView';
+import LoginView from './LoginView';
+import BlankView from './BlankView';
 import { useAuth } from './context/AuthContext';
 import { useView } from './context/ViewContext';
 import './styles/Page.css';
@@ -116,6 +117,9 @@ function Page() {
           </TabPanel>
           <TabPanel value="login" sx={{padding: 0, margin: 0}}>
             <LoginView />
+          </TabPanel>
+          <TabPanel value="blank" sx={{padding: 0, margin: 0}}>
+            <BlankView />
           </TabPanel>
         </Box>
       </TabContext>

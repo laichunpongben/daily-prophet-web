@@ -1,15 +1,12 @@
 // PortfolioSetting.js
 import React, { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
@@ -20,10 +17,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+import StyledTableRow from './StyledTableRow';
+import StyledTableCell from './StyledTableCell';
 import AddRowButton from './AddRowButton';
 import SaveButton from './SaveButton';
 import ResetButton from './ResetButton';
 import { useAuth } from './context/AuthContext';
+import { useView } from './context/ViewContext';
 
 const PortfolioSettingCard = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
@@ -34,6 +34,8 @@ const PortfolioSettingCard = () => {
   const [weights, setWeights] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [types, setTypes] = useState([]);
+
+  const { setView } = useView();
 
   const typeOptions = [
     { value: 'reddit', label: 'Reddit' },
@@ -77,6 +79,16 @@ const PortfolioSettingCard = () => {
       setWeights(data.setting.map((s) => Math.max(0, s[2])));
       setSubjects(data.setting.map((s) => s[1]));
       setTypes(data.setting.map((s) => s[0]));
+
+      // force update the view
+      setTimeout(() => {
+        setView('login');
+      }, 25);
+
+      setTimeout(() => {
+        setView('setting');
+      }, 50);
+
     } catch (error) {
       console.error('Error resetting portfolio:', error.message);
     }
@@ -137,16 +149,16 @@ const PortfolioSettingCard = () => {
 
     // Create new arrays without the element at the specified index
     const newTypes = [...types.slice(0, index), ...types.slice(index + 1)];
-    const newValues = [...subjects.slice(0, index), ...subjects.slice(index + 1)];
+    const newSubjects = [...subjects.slice(0, index), ...subjects.slice(index + 1)];
     const newWeights = [...weights.slice(0, index), ...weights.slice(index + 1)];
 
     // Update state with the new arrays
     setTypes(newTypes);
-    setSubjects(newValues);
+    setSubjects(newSubjects);
     setWeights(newWeights);
 
     // Update setting state
-    setSetting(newTypes.map((type, i) => [type, newValues[i], newWeights[i]]));
+    setSetting(newTypes.map((type, i) => [type, newSubjects[i], newWeights[i]]));
   };
 
   const handleAddRowButtonClick = () => {
@@ -155,18 +167,9 @@ const PortfolioSettingCard = () => {
     setWeights([...weights, 0.01]); // Add a new row with weight 0.01
   };
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  }));
-  
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:first-of-type th,': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-of-type td, &:last-of-type th': {
-      border: 0,
-    },
-  }));
+  useEffect(() => {
+    console.log('subjects:', subjects);
+  }, [subjects]);
 
   return (
     <div className="portfolio-setting-container">
@@ -182,7 +185,7 @@ const PortfolioSettingCard = () => {
               <TableContainer component={Paper}>
                 <Table aria-label="portfolio setting table">
                   <TableHead>
-                    <StyledTableRow>
+                    <StyledTableRow key="title">
                       <StyledTableCell>
                         <Typography variant='subtitle2'>
                           Type
@@ -207,7 +210,7 @@ const PortfolioSettingCard = () => {
                   </TableHead>
                   <TableBody>
                   {types.map((t, index) => (
-                    <StyledTableRow key={`${types[index]}/${subjects[index]}`}>
+                    <StyledTableRow key={index}>
                       <StyledTableCell scope="row">
                         <FormControl variant="standard" size="small">
                           <Select
@@ -243,6 +246,7 @@ const PortfolioSettingCard = () => {
                       </StyledTableCell>
                       <StyledTableCell>
                         <TextField 
+                          id={`subject ${index}`}
                           defaultValue={subjects[index]} 
                           variant="standard"
                           required 
@@ -252,6 +256,7 @@ const PortfolioSettingCard = () => {
                       </StyledTableCell>
                       <StyledTableCell>
                         <TextField 
+                          id={`weight ${index}`}
                           defaultValue={weights[index]}
                           type="number"
                           inputProps={{step: 0.01}}

@@ -20,7 +20,7 @@ const SaveButton = ({ onClick }) => {
     <div className="save-button">
       <ButtonBase 
         onClick={handleSave} 
-        sx={{border: '1px solid', borderRadius: '5px', padding: '0px 20px', boxShadow: `2px 2px 2px ${shadowColor}`}}>
+        sx={{border: '1px solid', borderRadius: '5px', padding: '0px 20px', boxShadow: `1px 1px 1px ${shadowColor}`}}>
         <SaveIcon />
         <Typography variant='overline'>
           Save

@@ -20,7 +20,7 @@ const AddRowButton = ({ onClick }) => {
     <div className="add-row-button">
       <ButtonBase 
         onClick={handleAddRow} 
-        sx={{border: '1px solid', borderRadius: '5px', padding: '0px 10px', boxShadow: `2px 2px 2px ${shadowColor}`}}>
+        sx={{border: '1px solid', borderRadius: '5px', padding: '0px 10px', boxShadow: `1px 1px 1px ${shadowColor}`}}>
         <AddIcon />
         <Typography variant='overline'>
           Add Row
