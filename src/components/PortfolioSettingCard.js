@@ -83,6 +83,31 @@ const PortfolioSettingCard = () => {
   };
 
   const handleSaveButtonClick = async () => {
+    // Check if any source is null or an empty string
+    if (sources.some(source => !source || source.trim().length === 0)) {
+      alert("All sources must be filled in.");
+      return;
+    }
+    
+    // Check if any subject is null or an empty string
+    if (subjects.some(subject => !subject || subject.trim().length === 0)) {
+      alert("All subjects must be filled in.");
+      return;
+    }
+
+    // Check if the sum of weights is greater than or equal to zero
+    const sumOfWeights = weights.reduce((sum, w) => sum + parseFloat(w), 0);
+    if (sumOfWeights <= 0) {
+      alert("The sum of weights must be greater than 0.");
+      return;
+    }
+
+    // Check if any individual weight is negative
+    if (weights.some(weight => parseFloat(weight) < 0)) {
+      alert("Individual weights must not be negative.");
+      return;
+    }
+
     try {
       const payload = {
         setting: sources.map((source, index) => [source, subjects[index], parseFloat(weights[index]) || 0]),

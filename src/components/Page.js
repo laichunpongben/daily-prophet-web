@@ -223,16 +223,17 @@ function Page() {
                         id="composition-menu"
                         aria-labelledby="composition-button"
                         onKeyDown={handleListKeyDown}
+                        sx={{padding: 0, margin: 0}}
                       >
                         <StyledMenuItem onClick={handleMenuLoginClick}>
                           <ListItemText 
                             primary="Login"
-                            primaryTypographyProps={{ variant: 'button' }} />
+                            primaryTypographyProps={{ variant: 'button', textAlign: 'center' }} />
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleMenuAboutClick}>
                           <ListItemText 
                             primary="About"
-                            primaryTypographyProps={{ variant: 'button' }} />
+                            primaryTypographyProps={{ variant: 'button', textAlign: 'center' }} />
                         </StyledMenuItem>
                       </MenuList>
                     </ClickAwayListener>
