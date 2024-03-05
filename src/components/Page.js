@@ -198,7 +198,7 @@ function Page() {
             aria-expanded={menuOpen ? 'true' : undefined}
             aria-haspopup="true"
             onClick={handleToggle}>
-              <MoreVertIcon />
+              <MoreVertIcon fontSize='large' />
             </StyledIconButton>
             <Popper
               open={menuOpen}

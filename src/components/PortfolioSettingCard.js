@@ -32,9 +32,9 @@ const PortfolioSettingCard = () => {
   const [setting, setSetting] = useState([]);
   const [weights, setWeights] = useState([]);
   const [subjects, setSubjects] = useState([]);
-  const [types, setTypes] = useState([]);
+  const [sources, setSources] = useState([]);
 
-  const typeOptions = [
+  const sourceOptions = [
     { value: 'reddit', label: 'Reddit' },
     { value: 'arxiv', label: 'Arxiv' },
     { value: 'youtube', label: 'Youtube' },
@@ -56,7 +56,7 @@ const PortfolioSettingCard = () => {
         setSetting(data.setting);
         setWeights(data.setting.map((s) => Math.max(0, s[2])));
         setSubjects(data.setting.map((s) => s[1]));
-        setTypes(data.setting.map((s) => s[0]));
+        setSources(data.setting.map((s) => s[0]));
       } catch (error) {
         console.error('Error fetching portfolio:', error.message);
       }
@@ -76,7 +76,7 @@ const PortfolioSettingCard = () => {
       console.log('Reset Portfolio Data:', data);
       setWeights(data.setting.map((s) => Math.max(0, s[2])));
       setSubjects(data.setting.map((s) => s[1]));
-      setTypes(data.setting.map((s) => s[0]));
+      setSources(data.setting.map((s) => s[0]));
     } catch (error) {
       console.error('Error resetting portfolio:', error.message);
     }
@@ -85,7 +85,7 @@ const PortfolioSettingCard = () => {
   const handleSaveButtonClick = async () => {
     try {
       const payload = {
-        setting: types.map((type, index) => [type, subjects[index], parseFloat(weights[index]) || 0]),
+        setting: sources.map((source, index) => [source, subjects[index], parseFloat(weights[index]) || 0]),
       };
 
       const response = await fetch(`${apiUrl}/portfolio`, {
@@ -104,10 +104,10 @@ const PortfolioSettingCard = () => {
     }
   };
 
-  const handleTypeChange = (index, newValue) => {
-    const newTypes = [...types];
-    newTypes[index] = newValue;
-    setTypes(newTypes);
+  const handleSourceChange = (index, newValue) => {
+    const newSources = [...sources];
+    newSources[index] = newValue;
+    setSources(newSources);
   };
 
   const handleSubjectChange = (index, newValue) => {
@@ -130,27 +130,27 @@ const PortfolioSettingCard = () => {
 
   const handleRemoveRow = (index) => {
     // Ensure that there is at least one row remaining
-    if (types.length === 1) {
+    if (sources.length === 1) {
       alert("You must keep at least one row.");
       return;
     }
 
     // Create new arrays without the element at the specified index
-    const newTypes = [...types.slice(0, index), ...types.slice(index + 1)];
+    const newSources = [...sources.slice(0, index), ...sources.slice(index + 1)];
     const newSubjects = [...subjects.slice(0, index), ...subjects.slice(index + 1)];
     const newWeights = [...weights.slice(0, index), ...weights.slice(index + 1)];
 
     // Update state with the new arrays
-    setTypes(newTypes);
+    setSources(newSources);
     setSubjects(newSubjects);
     setWeights(newWeights);
 
     // Update setting state
-    setSetting(newTypes.map((type, i) => [type, newSubjects[i], newWeights[i]]));
+    setSetting(newSources.map((source, i) => [source, newSubjects[i], newWeights[i]]));
   };
 
   const handleAddRowButtonClick = () => {
-    setTypes([...types, typeOptions[0].value]); // Add a new row with the default type
+    setSources([...sources, sourceOptions[0].value]); // Add a new row with the default source
     setSubjects([...subjects, '']); // Add a new row with an empty value
     setWeights([...weights, 0.01]); // Add a new row with weight 0.01
   };
@@ -172,7 +172,7 @@ const PortfolioSettingCard = () => {
                     <StyledTableRow key="title">
                       <StyledTableCell>
                         <Typography variant='subtitle2'>
-                          Type
+                          Source
                         </Typography>
                       </StyledTableCell>
                       <StyledTableCell sx={{ width: '100%' }}>
@@ -193,16 +193,16 @@ const PortfolioSettingCard = () => {
                     </StyledTableRow>
                   </TableHead>
                   <TableBody>
-                  {types.map((t, index) => (
-                    <StyledTableRow key={`${index}/${types[index]}/${subjects[index]}`}>
+                  {sources.map((s, index) => (
+                    <StyledTableRow key={`${index}/${sources[index]}/${subjects[index]}`}>
                       <StyledTableCell scope="row">
                         <FormControl variant="standard" size="small">
                           <Select
                             labelId="portfolio-setting-select-standard-label"
                             id="portfolio-setting-select-standard"
-                            value={types[index]}
-                            onChange={(event) => handleTypeChange(index, event.target.value)}
-                            label="Type"
+                            value={sources[index]}
+                            onChange={(event) => handleSourceChange(index, event.target.value)}
+                            label="Source"
                             autoWidth
                           >
                             <MenuItem value='reddit'>
