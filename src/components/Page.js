@@ -1,5 +1,5 @@
 // Page.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useColorScheme } from '@mui/material-next/styles';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,10 +8,22 @@ import TabPanel from '@mui/lab/TabPanel';
 import TabList from '@mui/lab/TabList';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import FeedIcon from '@mui/icons-material/Feed';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { parseJwt } from './Auth';
 import FeedView from './FeedView';
 import SettingView from './SettingView';
 import LoginView from './LoginView';
+import AboutView from './AboutView';
 import BlankView from './BlankView';
 import { useAuth } from './context/AuthContext';
 import { useView } from './context/ViewContext';
@@ -82,25 +94,153 @@ function Page() {
     backgroundColor: theme.palette.background.default,
   }));
 
+  const StyledIconButton = styled(IconButton)(({ theme }) => ({
+    color: theme.palette.text.secondary,
+  }));
+
+  const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+    color: theme.palette.text.secondary,
+  }));
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const anchorRef = useRef(null);
+
+  const handleToggle = () => {
+    setMenuOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleMenuClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setMenuOpen(false);
+  };
+
+  const handleMenuLoginClick = (event) => {
+    handleMenuClose(event);
+    setView('login');
+  };
+
+  const handleMenuAboutClick = (event) => {
+    handleMenuClose(event);
+    setView('about');
+  };
+
+  function handleListKeyDown(event) {
+    console.log("key down");
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setMenuOpen(false);
+    } else if (event.key === 'Escape') {
+      setMenuOpen(false);
+    }
+  }
+
+  const prevOpen = useRef(menuOpen);
+  useEffect(() => {
+    if (prevOpen.current === true && menuOpen === false) {
+      anchorRef.current.focus();
+    }
+    prevOpen.current = menuOpen;
+  }, [menuOpen]);
+
   return (
     <div className="wrapper">
       <CssBaseline />
       <TabContext value={view}>
-        <StyledBox sx={{
-          display: 'flex', 
-          justifyContent: 'center', 
-          padding: 0, 
-          margin: 0, 
-          position: 'fixed',
-          top: 0,
-          width: '100vw',
-          zIndex: 1,
-        }}>
-          <TabList onChange={handleTabChange} aria-label="top navigation bar">
-            <Tab label='Feed' value='feed'/>
-            <Tab label='Setting' value='setting' />
-            <Tab label='Login' value='login' />
-          </TabList>
+        <StyledBox x={{
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            padding: 0, 
+            margin: 0, 
+            position: 'fixed',
+            top: 0,
+            zIndex: 1,
+          }}>
+          <StyledBox sx={{
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            padding: 0, 
+            margin: 0, 
+            position: 'fixed',
+            top: 0,
+            zIndex: 1,
+            width: '100vw',
+          }}>
+            <TabList onChange={handleTabChange} aria-label="top navigation bar">
+              <Tab icon={<FeedIcon />} value='feed'/>
+              <Tab icon={<SettingsIcon />} value='setting' />
+              <Tab label='Login' value='login' sx={{display: 'none'}} />  { /* hidden */}
+              <Tab label='About' value='about' sx={{display: 'none'}} />  { /* hidden */}
+              <Tab label='Blank' value='blank' sx={{display: 'none'}} />  { /* hidden */}
+            </TabList>
+          </StyledBox>
+          <StyledBox sx={{
+            display: 'flex', 
+            justifyContent: 'flex-end', 
+            justifyItems: 'flex-end', 
+            justifySelf: 'flex-end', 
+            alignItems: 'center',
+            padding: 0, 
+            margin: 0, 
+            position: 'fixed',
+            top: 0,
+            right: 0,
+            zIndex: 2,
+          }}>
+            <StyledIconButton 
+            ref={anchorRef}
+            id="composition-button"
+            aria-label="more"
+            aria-controls={menuOpen ? 'composition-menu' : undefined}
+            aria-expanded={menuOpen ? 'true' : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}>
+              <MoreVertIcon />
+            </StyledIconButton>
+            <Popper
+              open={menuOpen}
+              anchorEl={()=> anchorRef.current}  // anchorRef only does not work
+              role={undefined}
+              placement="bottom-start"
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom-start' ? 'left top' : 'left bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleMenuClose}>
+                      <MenuList
+                        autoFocusItem={menuOpen}
+                        id="composition-menu"
+                        aria-labelledby="composition-button"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <StyledMenuItem onClick={handleMenuLoginClick}>
+                          <ListItemText 
+                            primary="Login"
+                            primaryTypographyProps={{ variant: 'button' }} />
+                        </StyledMenuItem>
+                        <StyledMenuItem onClick={handleMenuAboutClick}>
+                          <ListItemText 
+                            primary="About"
+                            primaryTypographyProps={{ variant: 'button' }} />
+                        </StyledMenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </StyledBox>
         </StyledBox>
         <Box sx={{
           display: 'flex', 
@@ -117,6 +257,9 @@ function Page() {
           </TabPanel>
           <TabPanel value="login" sx={{padding: 0, margin: 0}}>
             <LoginView />
+          </TabPanel>
+          <TabPanel value="about" sx={{padding: 0, margin: 0}}>
+            <AboutView />
           </TabPanel>
           <TabPanel value="blank" sx={{padding: 0, margin: 0}}>
             <BlankView />
