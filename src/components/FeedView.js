@@ -87,6 +87,7 @@ const FeedView = () => {
   }, [cards]);
 
   // init page with cards
+  // eslint-disable-next-line
   useEffect(() => {
     if (cards.length < EXPECTED_CARDS_ON_PAGE) {
       // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
@@ -100,12 +101,12 @@ const FeedView = () => {
     }
   }, [cards]);
 
+  // eslint-disable-next-line
   useEffect(() => {
     if (cards.length > 1 && cards[0]?.type === "error") {
-      console.log("Remove error card");
       setCards((prevCards) => prevCards.slice(1));
     }
-  });
+  }); // always checking
 
   useEffect(() => {
     if (fetching) {

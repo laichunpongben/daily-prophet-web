@@ -52,7 +52,7 @@ const LoginButton = () => {
   }, []);
 
   const handleCredentialResponse = (response) => {
-    console.log('Credential response:', response);
+    // console.log('Credential response:', response);
 
     // Handle the Sign-In response here
     if (response.credential) {

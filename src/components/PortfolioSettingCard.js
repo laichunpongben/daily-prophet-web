@@ -17,6 +17,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import StyledTableRow from './StyledTableRow';
 import StyledTableCell from './StyledTableCell';
 import AddRowButton from './AddRowButton';
@@ -33,6 +35,9 @@ const PortfolioSettingCard = () => {
   const [weights, setWeights] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [sources, setSources] = useState([]);
+
+  const [saveSnackbarOpen, setSaveSnackbarOpen] = useState(false);
+  const [resetSnackbarOpen, setResetSnackbarOpen] = useState(false);
 
   const sourceOptions = [
     { value: 'reddit', label: 'Reddit' },
@@ -73,10 +78,13 @@ const PortfolioSettingCard = () => {
         },
       });
       const data = await response.json();
-      console.log('Reset Portfolio Data:', data);
       setWeights(data.setting.map((s) => Math.max(0, s[2])));
       setSubjects(data.setting.map((s) => s[1]));
       setSources(data.setting.map((s) => s[0]));
+
+      // console.log('Reset Portfolio Data:', data);
+
+      setResetSnackbarOpen(true);
     } catch (error) {
       console.error('Error resetting portfolio:', error.message);
     }
@@ -122,8 +130,11 @@ const PortfolioSettingCard = () => {
         body: JSON.stringify(payload),
       });
 
+      // eslint-disable-next-line
       const data = await response.json();
-      console.log('Save Portfolio Data:', data);
+      // console.log('Save Portfolio Data:', data);
+
+      setSaveSnackbarOpen(true);
     } catch (error) {
       console.error('Error saving portfolio:', error.message);
     }
@@ -178,6 +189,20 @@ const PortfolioSettingCard = () => {
     setSources([...sources, sourceOptions[0].value]); // Add a new row with the default source
     setSubjects([...subjects, '']); // Add a new row with an empty value
     setWeights([...weights, 0.01]); // Add a new row with weight 0.01
+  };
+
+  const handleSaveSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSaveSnackbarOpen(false);
+  };
+
+  const handleResetSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setResetSnackbarOpen(false);
   };
 
   return (
@@ -299,6 +324,36 @@ const PortfolioSettingCard = () => {
                 </Box>
               </div>
             </Stack>
+            <Snackbar
+              open={saveSnackbarOpen}
+              autoHideDuration={2000} 
+              onClose={handleSaveSnackbarClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+              <MuiAlert
+                elevation={6}
+                variant="filled"
+                onClose={handleSaveSnackbarClose}
+                severity="success"
+              >
+                Saved successfully!
+              </MuiAlert>
+            </Snackbar>
+            <Snackbar
+              open={resetSnackbarOpen}
+              autoHideDuration={2000} 
+              onClose={handleResetSnackbarClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+              <MuiAlert
+                elevation={6}
+                variant="filled"
+                onClose={handleResetSnackbarClose}
+                severity="success"
+              >
+                Reset successfully!
+              </MuiAlert>
+            </Snackbar>
           </CardContent>
         </Card>
       </div>
