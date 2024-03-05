@@ -177,7 +177,7 @@ function Page() {
               <Tab label='Blank' value='blank' sx={{display: 'none'}} />  { /* hidden */}
             </TabList>
           </StyledBox>
-          <StyledBox sx={{
+          <Box sx={{
             display: 'flex', 
             justifyContent: 'flex-end', 
             justifyItems: 'flex-end', 
@@ -240,7 +240,7 @@ function Page() {
                 </Grow>
               )}
             </Popper>
-          </StyledBox>
+          </Box>
         </StyledBox>
         <Box sx={{
           display: 'flex', 
