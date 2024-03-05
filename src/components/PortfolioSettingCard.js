@@ -23,7 +23,6 @@ import AddRowButton from './AddRowButton';
 import SaveButton from './SaveButton';
 import ResetButton from './ResetButton';
 import { useAuth } from './context/AuthContext';
-import { useView } from './context/ViewContext';
 
 const PortfolioSettingCard = () => {
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
@@ -34,8 +33,6 @@ const PortfolioSettingCard = () => {
   const [weights, setWeights] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [types, setTypes] = useState([]);
-
-  const { setView } = useView();
 
   const typeOptions = [
     { value: 'reddit', label: 'Reddit' },
@@ -79,16 +76,6 @@ const PortfolioSettingCard = () => {
       setWeights(data.setting.map((s) => Math.max(0, s[2])));
       setSubjects(data.setting.map((s) => s[1]));
       setTypes(data.setting.map((s) => s[0]));
-
-      // force update the view
-      setTimeout(() => {
-        setView('login');
-      }, 50);
-
-      setTimeout(() => {
-        setView('setting');
-      }, 100);
-
     } catch (error) {
       console.error('Error resetting portfolio:', error.message);
     }
@@ -167,10 +154,6 @@ const PortfolioSettingCard = () => {
     setWeights([...weights, 0.01]); // Add a new row with weight 0.01
   };
 
-  useEffect(() => {
-    console.log('subjects:', subjects);
-  }, [subjects]);
-
   return (
     <div className="portfolio-setting-container">
       { setting ? ( 
@@ -210,7 +193,7 @@ const PortfolioSettingCard = () => {
                   </TableHead>
                   <TableBody>
                   {types.map((t, index) => (
-                    <StyledTableRow key={index}>
+                    <StyledTableRow key={`${index}/${types[index]}/${subjects[index]}`}>
                       <StyledTableCell scope="row">
                         <FormControl variant="standard" size="small">
                           <Select
@@ -252,6 +235,7 @@ const PortfolioSettingCard = () => {
                           required 
                           sx={{'.MuiInputBase-input': { fontSize: '0.75rem' },}}
                           onChange={(event) => handleSubjectChange(index, event.target.value)}
+                          autoFocus
                         />
                       </StyledTableCell>
                       <StyledTableCell>
