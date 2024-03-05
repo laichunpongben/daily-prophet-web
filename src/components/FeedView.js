@@ -1,3 +1,4 @@
+// FeedView.js
 import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';

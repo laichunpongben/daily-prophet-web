@@ -23,6 +23,7 @@ import { parseJwt } from './Auth';
 import FeedView from './FeedView';
 import SettingView from './SettingView';
 import LoginView from './LoginView';
+import QuickStartView from './QuickStartView';
 import AboutView from './AboutView';
 import BlankView from './BlankView';
 import { useAuth } from './context/AuthContext';
@@ -131,6 +132,11 @@ function Page() {
     setView('login');
   };
 
+  const handleMenuQuickStartClick = (event) => {
+    handleMenuClose(event);
+    setView('quickstart');
+  };
+
   const handleMenuAboutClick = (event) => {
     handleMenuClose(event);
     setView('about');
@@ -183,6 +189,7 @@ function Page() {
               <Tab icon={<FeedIcon />} value='feed'/>
               <Tab icon={<SettingsIcon />} value='setting' />
               <Tab label='Login' value='login' sx={{display: 'none'}} />  { /* hidden */}
+              <Tab label='Quickstart' value='quickstart' sx={{display: 'none'}} />  { /* hidden */}
               <Tab label='About' value='about' sx={{display: 'none'}} />  { /* hidden */}
               <Tab label='Blank' value='blank' sx={{display: 'none'}} />  { /* hidden */}
             </TabList>
@@ -240,6 +247,11 @@ function Page() {
                             primary="Login"
                             primaryTypographyProps={{ variant: 'button', textAlign: 'center' }} />
                         </StyledMenuItem>
+                        <StyledMenuItem onClick={handleMenuQuickStartClick}>
+                          <ListItemText 
+                            primary="Quickstart"
+                            primaryTypographyProps={{ variant: 'button', textAlign: 'center' }} />
+                        </StyledMenuItem>
                         <StyledMenuItem onClick={handleMenuAboutClick}>
                           <ListItemText 
                             primary="About"
@@ -268,6 +280,9 @@ function Page() {
           </TabPanel>
           <TabPanel value="login" sx={{padding: 0, margin: 0}}>
             <LoginView />
+          </TabPanel>
+          <TabPanel value="quickstart" sx={{padding: 0, margin: 0}}>
+            <QuickStartView />
           </TabPanel>
           <TabPanel value="about" sx={{padding: 0, margin: 0}}>
             <AboutView />
