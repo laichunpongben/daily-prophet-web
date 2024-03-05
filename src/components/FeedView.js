@@ -1,5 +1,6 @@
 // FeedView.js
 import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { throttle } from 'lodash';
@@ -125,6 +126,10 @@ const FeedView = () => {
 
   return (
     <div className="feed-view-container">
+      <Helmet>
+        <title>Enjoy Reading - Daily Prophet</title>
+        <meta name="description" content="Discover a curated feed of articles tailored to your interests. Stay engaged and informed with the latest content on Daily Prophet's feed." />
+      </Helmet>
       <div className="feed-card-container">
         <Container maxWidth="sm" spacing={0} sx={{ padding: 0, margin: 0 }}>
           <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>

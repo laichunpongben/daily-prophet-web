@@ -1,5 +1,6 @@
 // Page.js
 import React, { useEffect, useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useColorScheme } from '@mui/material-next/styles';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -162,6 +163,10 @@ function Page() {
 
   return (
     <div className="wrapper">
+      <Helmet>
+        <title>Daily Prophet - Personalized and Configurable Feed</title>
+        <meta name="description" content="Explore, customize, and enjoy a personalized feed of articles on Daily Prophet. Log in to access exclusive features and tailor your reading experience." />
+      </Helmet>
       <CssBaseline />
       <TabContext value={view}>
         <StyledBox x={{
