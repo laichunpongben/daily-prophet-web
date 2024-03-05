@@ -6,12 +6,11 @@ import OpenWeatherMapFeedCard from './OpenWeatherMapFeedCard';
 import LihkgFeedCard from './LihkgFeedCard';
 import FoursquareFeedCard from './FoursquareFeedCard';
 import ErrorCard from './ErrorCard';
+import DefaultCard from './DefaultCard';
 import './styles/FeedCard.css';
 
 const FeedCard = ({ data }) => {
   const { type, ...cardData } = data;
-
-  // console.log('card data:', cardData);
 
   if (!type) {
     return null; // Do not render anything if type is not present
@@ -33,7 +32,7 @@ const FeedCard = ({ data }) => {
     case "error":
         return <ErrorCard type={type} {...cardData} />;
     default:
-      return <p>Unsupported card type: {type}</p>;
+      return <DefaultCard type={type} />;
   }
 };
 

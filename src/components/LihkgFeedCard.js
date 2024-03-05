@@ -12,6 +12,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import SubjectIcon from '@mui/icons-material/Subject';
 import ForumIcon from '@mui/icons-material/Forum';
 import CreateIcon from '@mui/icons-material/Create';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
@@ -23,7 +24,9 @@ import './styles/FeedCard.css';
 
 const LihkgFeedCard = ({
   title,
-  category,
+  q,
+  category_name,
+  sub_category_name,
   user_nickname,
   like_count,
   dislike_count,
@@ -45,11 +48,7 @@ const LihkgFeedCard = ({
     return formatter.format(date);
   };
 
-  const lihkgCategoryMapping = {
-    1: '吹水台',
-    5: '時事台',
-  };
-  const categoryText = lihkgCategoryMapping[category] || category;
+  const categoryText = sub_category_name === undefined ? category_name : `${category_name} > ${sub_category_name}`;
 
   return (
     <div className="feed-card lihkg-feed-card">
@@ -72,6 +71,17 @@ const LihkgFeedCard = ({
         <CardContent>
           <Box>
             <List disablePadding dense>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SubjectIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={q}
+                    primaryTypographyProps={{ variant: 'caption' }}
+                  />
+                </ListItemButton>
+              </ListItem>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
