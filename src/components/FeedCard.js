@@ -3,6 +3,7 @@ import RedditFeedCard from './RedditFeedCard';
 import ArxivFeedCard from './ArxivFeedCard';
 import YoutubeFeedCard from './YoutubeFeedCard';
 import OpenWeatherMapFeedCard from './OpenWeatherMapFeedCard';
+import LihkgFeedCard from './LihkgFeedCard';
 import FoursquareFeedCard from './FoursquareFeedCard';
 import ErrorCard from './ErrorCard';
 import './styles/FeedCard.css';
@@ -25,6 +26,8 @@ const FeedCard = ({ data }) => {
       return <YoutubeFeedCard type={type} {...cardData} />;
     case "openweathermap":
       return <OpenWeatherMapFeedCard type={type} {...cardData} />;
+    case "lihkg":
+      return <LihkgFeedCard type={type} {...cardData} />;
     case "foursquare":
       return <FoursquareFeedCard type={type} {...cardData} />;
     case "error":

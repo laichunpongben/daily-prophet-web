@@ -39,6 +39,7 @@ const PortfolioSettingCard = () => {
     { value: 'arxiv', label: 'Arxiv' },
     { value: 'youtube', label: 'Youtube' },
     { value: 'openweathermap', label: 'OpenWeatherMap' },
+    { value: 'lihkg', label: 'Lihkg' },
   ];
 
   useEffect(() => {
@@ -222,6 +223,11 @@ const PortfolioSettingCard = () => {
                             <MenuItem value='openweathermap'>
                               <Typography variant='caption'>
                                 openweathermap
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem value='lihkg'>
+                              <Typography variant='caption'>
+                                lihkg
                               </Typography>
                             </MenuItem>
                           </Select>
