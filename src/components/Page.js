@@ -31,7 +31,7 @@ import './styles/Page.css';
 
 function Page() {
   const { token, userId, userEmail, userName, setToken, setUserId, setUserEmail, setUserName } = useAuth();
-  const { view, setView } = useView();
+  const { view, setView, playVideoOffScreen, setPlayVideoOffScreen } = useView();
   const { mode, setMode } = useColorScheme();
 
   useEffect(() => {
@@ -51,13 +51,13 @@ function Page() {
       // check for token exp, default expire for Google Sign-in is 1 hr
       const decodedToken = parseJwt(storedToken);
       const expire = decodedToken.exp;
-      console.log('expire: ', expire);
+      // console.log('expire: ', expire);
 
       const current = Math.ceil(Date.now() / 1000);
-      console.log('current: ', current);
+      // console.log('current: ', current);
 
       if (expire > current) {  // expire is in the future
-        console.log("Restore token from local!")
+        // console.log("Restore token from local!")
 
         setToken(storedToken);
         setUserId(storedUserId);
@@ -83,8 +83,18 @@ function Page() {
     if (storedMode !== null && storedMode !== mode) {
       setMode(storedMode);
     }
-  // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const storedPlayVideoOffScreen = localStorage.getItem('playVideoOffScreen');
+    const retrievedPlayVideoOffScreen = storedPlayVideoOffScreen === 'true';
+  
+    if (retrievedPlayVideoOffScreen !== null && retrievedPlayVideoOffScreen !== playVideoOffScreen) {
+      setPlayVideoOffScreen(retrievedPlayVideoOffScreen);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);  
 
   const handleTabChange = (event, newTab) => {
     setView(newTab);

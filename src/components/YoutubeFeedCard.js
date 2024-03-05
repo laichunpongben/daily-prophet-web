@@ -16,17 +16,21 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SubjectIcon from '@mui/icons-material/Subject';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import { useView } from './context/ViewContext';
 import './styles/FeedCard.css';
 
 const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [playing, setPlaying] = useState(false);
+  const { playVideoOffScreen } = useView();
 
   const calculateHeight = (width) => {
     return Math.round((9 / 16) * width);
   };
 
   const handleVisible = (isVisible) => {
+    if (playVideoOffScreen) return;  // skip checking when user enables this
+
     if (!isVisible) {
       setPlaying(false);
     }

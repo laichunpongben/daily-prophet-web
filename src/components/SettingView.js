@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import ThemeSettingCard from './ThemeSettingCard';
+import ViewSettingCard from './ViewSettingCard';
 import PortfolioSettingCard from './PortfolioSettingCard';
 
 const SettingView = () => {
@@ -16,7 +16,7 @@ const SettingView = () => {
               You are what you read. You control your daily feed. 
             </Typography>
           </Box>
-          <ThemeSettingCard />
+          <ViewSettingCard />
           <PortfolioSettingCard />
         </Stack>
       </Container>

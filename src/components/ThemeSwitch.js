@@ -5,7 +5,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { useColorScheme } from '@mui/material-next/styles';
-import './styles/ThemeSwitch.css';
 
 const ThemeSwitch = () => {
   const { mode, setMode } = useColorScheme();

@@ -52,7 +52,7 @@ const PortfolioSettingCard = () => {
         });
         const data = await response.json();
 
-        console.log('Portfolio Data:', data);
+        // console.log('Portfolio Data:', data);
         setSetting(data.setting);
         setWeights(data.setting.map((s) => Math.max(0, s[2])));
         setSubjects(data.setting.map((s) => s[1]));
@@ -186,7 +186,7 @@ const PortfolioSettingCard = () => {
       <div className="portfolio-card-container">
         <Card>
           <CardHeader
-          title='Content Portfolio' 
+          title='Content' 
           titleTypographyProps={{variant: 'button'}}
           />
           <CardContent>

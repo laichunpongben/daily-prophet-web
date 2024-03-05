@@ -5,9 +5,10 @@ const ViewContext = createContext();
 
 export const ViewProvider = ({ children }) => {
   const [view, setView] = useState('login');
+  const [playVideoOffScreen, setPlayVideoOffScreen] = useState(false);
 
   return (
-    <ViewContext.Provider value={{ view, setView }}>
+    <ViewContext.Provider value={{ view, setView, playVideoOffScreen, setPlayVideoOffScreen }}>
       {children}
     </ViewContext.Provider>
   );
