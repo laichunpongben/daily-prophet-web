@@ -95,7 +95,17 @@ const FeedView = () => {
       // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
       setFetching(true);
     }
-  }); // always checking
+  }, [cards]);
+
+  useEffect(() => {
+    setInterval(() => {
+      if (cards.length < EXPECTED_CARDS_ON_PAGE) {
+        // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
+        setFetching(true);
+      }
+    }, 2000);
+  // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (cards.length === MAX_CARDS_ON_PAGE) {
