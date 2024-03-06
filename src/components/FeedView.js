@@ -98,14 +98,16 @@ const FeedView = () => {
   }, [cards]);
 
   useEffect(() => {
-    setInterval(() => {
-      if (cards.length < EXPECTED_CARDS_ON_PAGE) {
-        // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
-        setFetching(true);
-      }
-    }, 2000);
-  // eslint-disable-next-line
-  }, []);
+    if (cards.length < EXPECTED_CARDS_ON_PAGE) {
+      const intervalId = setInterval(() => {
+        if (cards.length < EXPECTED_CARDS_ON_PAGE) {
+          // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
+          setFetching(true);
+        }
+      }, 5000);
+      return () => clearInterval(intervalId);
+    }
+  }, [cards]);
 
   useEffect(() => {
     if (cards.length === MAX_CARDS_ON_PAGE) {
