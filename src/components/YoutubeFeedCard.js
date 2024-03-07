@@ -19,7 +19,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { useView } from './context/ViewContext';
 import './styles/FeedCard.css';
 
-const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
+const YoutubeFeedCard = ({ source, id, title, channel, publishTime }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [playing, setPlaying] = useState(false);
   const { playVideoOffScreen } = useView();
@@ -58,7 +58,7 @@ const YoutubeFeedCard = ({ type, id, title, channel, publishTime }) => {
           avatar={
             <Avatar 
               src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?20220706172052" 
-              aria-label={type} 
+              aria-label={source} 
             />
           }
         />

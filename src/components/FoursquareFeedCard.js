@@ -2,7 +2,7 @@ import React from 'react';
 // import { useTheme } from './context/ThemeContext';
 import './styles/FeedCard.css';
 
-const FoursquareFeedCard = ({ type, name, address, category, distance, latitude, longitude, open, url }) => {
+const FoursquareFeedCard = ({ source, name, address, category, distance, latitude, longitude, open, url }) => {
   // const { theme } = useTheme();
 
   const renderKeyBubble = (key) => (
@@ -21,7 +21,7 @@ const FoursquareFeedCard = ({ type, name, address, category, distance, latitude,
         <p>{renderKeyBubble('Latitude')} {latitude}</p>
         <p>{renderKeyBubble('Longitude')} {longitude}</p>
         <p>{renderKeyBubble('Open Status')} {open}</p>
-        <p>{renderKeyBubble('Type')} {type}</p>
+        <p>{renderKeyBubble('source')} {source}</p>
         <a href={url} target="_blank" rel="noopener noreferrer">
           More Details
         </a>

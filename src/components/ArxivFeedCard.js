@@ -21,7 +21,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import './styles/FeedCard.css';
 
-const ArxivFeedCard = ({ type, subject, title, summary, author, updated, url }) => {
+const ArxivFeedCard = ({ source, subject, title, summary, author, updated, url }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleSummaryClick = () => {
@@ -51,7 +51,7 @@ const ArxivFeedCard = ({ type, subject, title, summary, author, updated, url }) 
           avatar={
             <Avatar 
               src="https://info.arxiv.org/brand/images/brand-logo-primary.jpg" 
-              aria-label={type} 
+              aria-label={source} 
             />
           }
         />

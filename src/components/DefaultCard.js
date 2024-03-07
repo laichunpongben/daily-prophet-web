@@ -5,7 +5,7 @@ import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const DefaultCard = ({ type }) => {
+const DefaultCard = ({ source }) => {
   return (
     <div className="default-card">
       <Card>
@@ -13,7 +13,7 @@ const DefaultCard = ({ type }) => {
           <Box spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Alert variant="outlined" severity="warning">
               <Typography variant="caption">
-                Unsupported card type: {type}
+                Unsupported card source: {source}
               </Typography>
             </Alert>
           </Box>

@@ -10,29 +10,29 @@ import DefaultCard from './DefaultCard';
 import './styles/FeedCard.css';
 
 const FeedCard = ({ data }) => {
-  const { type, ...cardData } = data;
+  const { source, ...cardData } = data;
 
-  if (!type) {
-    return null; // Do not render anything if type is not present
+  if (!source) {
+    return null; // Do not render anything if source is not present
   }
 
-  switch (type) {
+  switch (source) {
     case "reddit":
-      return <RedditFeedCard type={type} {...cardData} />;
+      return <RedditFeedCard source={source} {...cardData} />;
     case "arxiv":
-      return <ArxivFeedCard type={type} {...cardData} />;
+      return <ArxivFeedCard source={source} {...cardData} />;
     case "youtube":
-      return <YoutubeFeedCard type={type} {...cardData} />;
+      return <YoutubeFeedCard source={source} {...cardData} />;
     case "openweathermap":
-      return <OpenWeatherMapFeedCard type={type} {...cardData} />;
+      return <OpenWeatherMapFeedCard source={source} {...cardData} />;
     case "lihkg":
-      return <LihkgFeedCard type={type} {...cardData} />;
+      return <LihkgFeedCard source={source} {...cardData} />;
     case "foursquare":
-      return <FoursquareFeedCard type={type} {...cardData} />;
+      return <FoursquareFeedCard source={source} {...cardData} />;
     case "error":
-        return <ErrorCard type={type} {...cardData} />;
+        return <ErrorCard source={source} {...cardData} />;
     default:
-      return <DefaultCard type={type} />;
+      return <DefaultCard source={source} />;
   }
 };
 

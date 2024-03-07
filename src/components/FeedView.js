@@ -47,7 +47,7 @@ const FeedView = () => {
 
       const data = await fetchPop();
 
-      if (data && data.type) {
+      if (data && data.source) {
         // Check if the new card is the same as the previous one
         const isSameCard = cards.length > 0 && cards.slice(-CARDS_NO_REPEAT).some((card) => JSON.stringify(card) === JSON.stringify(data));
 
@@ -117,7 +117,7 @@ const FeedView = () => {
 
   // eslint-disable-next-line
   useEffect(() => {
-    if (cards.length > 1 && cards[0]?.type === "error") {
+    if (cards.length > 1 && cards[0]?.source === "error") {
       setCards((prevCards) => prevCards.slice(1));
     }
   }); // always checking

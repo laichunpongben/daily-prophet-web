@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -13,15 +13,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ForumIcon from '@mui/icons-material/Forum';
+import SubjectIcon from '@mui/icons-material/Subject';
 import CreateIcon from '@mui/icons-material/Create';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CommentIcon from '@mui/icons-material/Comment';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import './styles/FeedCard.css';
 
-const RedditFeedCard = ({ type, community, title, author, ups, num_comments, created_utc, url }) => {
+const RedditFeedCard = ({ source, subject, title, author, ups, num_comments, created_utc, url, summary }) => {
   const formatDate = (timestamp) => {
     const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
     const formatter = new Intl.DateTimeFormat('en-US', {
@@ -42,7 +45,21 @@ const RedditFeedCard = ({ type, community, title, author, ups, num_comments, cre
   
     return imageExtensions.includes(urlExtension);
   };
+
+  const [open, setOpen] = useState(false);
+
+  const handleSummaryClick = () => {
+    setOpen(!open);
+  };
+
+  const trimText = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
   
+    // Trim the text and add ellipsis
+    return text.slice(0, maxLength) + '...';
+  };
 
   return (
     <div className="feed-card reddit-feed-card">
@@ -58,7 +75,7 @@ const RedditFeedCard = ({ type, community, title, author, ups, num_comments, cre
           avatar={
             <Avatar 
               src="https://static.lingoapp.com/avatar/s/75148/4D5390E4-1A1E-429A-8C24-73CF0F35EACD.png" 
-              aria-label={type} 
+              aria-label={source} 
             />
           }
         />
@@ -68,9 +85,18 @@ const RedditFeedCard = ({ type, community, title, author, ups, num_comments, cre
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
-                    <ForumIcon fontSize='small' />
+                    <SubjectIcon fontSize='small' />
                   </ListItemIcon>
-                  <ListItemText primary={community} primaryTypographyProps={{variant: 'caption'}} />
+                  <ListItemText primary={subject} primaryTypographyProps={{variant: 'caption'}} />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton onClick={handleSummaryClick}>
+                  <ListItemIcon>
+                    <SummarizeIcon fontSize='small' />
+                  </ListItemIcon>
+                  <ListItemText primary={open ? summary : trimText(summary, 140)} primaryTypographyProps={{variant: 'caption'}} />
+                  {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding dense>

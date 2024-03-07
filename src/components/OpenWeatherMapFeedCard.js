@@ -14,7 +14,7 @@ const getWeatherIconUrl = (iconCode) => {
 };
 
 const OpenWeatherMapFeedCard = ({
-  type,
+  source,
   city_name,
   list_0_temp_day,
   list_1_temp_day,
@@ -72,7 +72,7 @@ const OpenWeatherMapFeedCard = ({
           avatar={
             <Avatar 
               src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/android-app-top-banner.png" 
-              aria-label={type} 
+              aria-label={source} 
             />
           }
         />
