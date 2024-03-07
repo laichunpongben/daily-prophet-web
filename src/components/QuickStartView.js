@@ -16,7 +16,7 @@ const QuickStartView = () => {
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'flex-start', 
-          height: '80vh', 
+          minHeight: '80vh', 
           padding: '0px', 
           margin: '0px' 
         }}>
