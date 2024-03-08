@@ -58,6 +58,15 @@ const QuickStartView = () => {
           <Typography variant="caption" paragraph color="textSecondary" align="left">
           So, this app essentially addresses the three issues: It puts the sources and subjects under your control, consolidates them into one place, and provides concise summaries. Now, easy reading!
           </Typography>
+          <Typography variant="button" paragraph color="textSecondary" align="left">
+          More on Content
+          </Typography>
+          <Typography variant="caption" paragraph color="textSecondary" align="left">
+          (1) Refining Searches: When searching within a source that offers distinct channels, like Subreddits on Reddit, you can specify them using the "@" symbol. For instance, typing "python@programming" in the subject searches within the "programming" subreddit, ensuring you find programming-related content instead of information about the snake.
+          </Typography>
+          <Typography variant="caption" paragraph color="textSecondary" align="left">
+          (2) Utilizing Generative AI: In cases where a source lacks a summary, the app employs AI-generated text to provide one. Our current model, powered by Google Gemini 1.0 Pro, ensures you receive informative summaries even when original content doesn't offer them.
+          </Typography>
         </Stack>
       </Container>
     </div>
