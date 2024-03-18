@@ -99,6 +99,13 @@ const FeedView = () => {
 
   useEffect(() => {
     if (cards.length < EXPECTED_CARDS_ON_PAGE) {
+      // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
+      setFetching(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cards.length < EXPECTED_CARDS_ON_PAGE) {
       const intervalId = setInterval(() => {
         if (cards.length < EXPECTED_CARDS_ON_PAGE) {
           // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
