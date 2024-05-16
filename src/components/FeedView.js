@@ -110,11 +110,12 @@ const FeedView = () => {
         if (cards.length < EXPECTED_CARDS_ON_PAGE) {
           // console.log('Length of cards <<< ', EXPECTED_CARDS_ON_PAGE, ': ', cards.length);
           setFetching(true);
+          fetchAndLoadFeeds();
         }
-      }, 5000);
+      }, 2500);
       return () => clearInterval(intervalId);
     }
-  }, [cards]);
+  }, [cards, fetchAndLoadFeeds]);
 
   useEffect(() => {
     if (cards.length === MAX_CARDS_ON_PAGE) {
@@ -133,7 +134,7 @@ const FeedView = () => {
     if (fetching) {
       fetchAndLoadFeeds();
     }
-  }, [fetchAndLoadFeeds, fetching]);
+  }, [fetching, fetchAndLoadFeeds]);
 
   useEffect(() => {
     window.addEventListener('scroll', throttledHandleScroll);
