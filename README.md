@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+## Daily Prophet - Personalized & Configurable Reading App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Daily Prophet** is a React web application that provides a personalized and configurable reading experience. It aggregates content from various sources like Reddit, Arxiv, Youtube, OpenWeatherMap, Lihkg, and Foursquare, curating a tailored feed based on your interests.
 
-## Available Scripts
+### Features
 
-In the project directory, you can run:
+* **Personalized Feed**: Discover a stream of articles, videos, and other content based on your chosen subjects and sources.
+* **Configurable Portfolio**: Control the sources and subjects that populate your feed, prioritizing your interests with adjustable weights.
+* **Multiple Sources**: Get news, articles, discussions, videos, and weather updates from a variety of trusted sources.
+* **Concise Summaries**: Read informative summaries of articles and videos, saving you time and effort.
+* **Dark Mode**: Enjoy a comfortable reading experience with a customizable dark mode theme.
+* **Google Sign-In**: Easily log in with your Google account to personalize your settings and sync them across devices.
+* **Offline Access**: (Planned) Access your feed even without an internet connection.
 
-### `npm start`
+### Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Prerequisites:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Node.js and npm (or yarn)
 
-### `npm test`
+**Installation:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository: `git clone https://github.com/your-username/daily-prophet.git`
+2. Navigate to the project directory: `cd daily-prophet`
+3. Install dependencies: `npm install`
 
-### `npm run build`
+**Running the Application:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Start the development server: `npm start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application will be accessible at http://localhost:3000 in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Usage
 
-### `npm run eject`
+1. **Log In:**
+   * Click the "Login" button in the top right corner.
+   * Sign in with your Google account.
+2. **Customize Your Feed:**
+   * Navigate to the "Setting" tab.
+   * In the "Content" section, you can:
+     * **Add Sources:**  Choose sources from the dropdown menu and specify the subjects you're interested in.
+     * **Adjust Weights:** Use the number input to control the prominence of different subjects in your feed.
+     * **Remove Rows:** Delete rows that are no longer relevant to your interests.
+3. **Explore Your Feed:**
+   * Switch to the "Feed" tab.
+   * Browse through the articles, videos, and other content tailored to your preferences.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* React
+* React Router DOM
+* @mui/material
+* @mui/styles
+* React-helmet-async
+* React Player
+* lodash
+* React Waypoint
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Contributions are welcome! Please feel free to submit issues or pull requests.
 
-## Learn More
+### License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License.
