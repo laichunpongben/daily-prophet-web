@@ -1,6 +1,6 @@
 ## Daily Prophet - Personalized & Configurable Reading App
 
-**Daily Prophet** is a React web application that provides a personalized and configurable reading experience. It aggregates content from various sources like Reddit, Arxiv, Youtube, OpenWeatherMap, Lihkg, and Foursquare, curating a tailored feed based on your interests.
+**Daily Prophet** is a React web application that provides a personalized and configurable reading experience. It aggregates content from various sources like Reddit, Arxiv, Youtube, OpenWeatherMap, Lihkg, and Foursquare, curating a tailored feed based on your interests. This repository contains the frontend part of the project.
 
 ### Features
 
